@@ -111,12 +111,14 @@ public class Block : MonoBehaviour {
 		OnSelected ();
 
 		Block passedBlock 	= _listMove [0];
-		passedBlock.OnOriginPassed ();
+
 		BlockInfo newInfo 		= new BlockInfo (blockInfo);
 		newInfo.posInBoard 		= passedBlock.blockInfo.posInBoard;
 		newInfo.num 			= blockInfo.num - passedBlock.blockInfo.num;
 		newInfo.type 			= (newInfo.num == 0) ? BlockType.originDone : newInfo.type;
 		blockInfo = newInfo;
+
+		passedBlock.OnOriginPassed ();
 		_listMove.RemoveAt (0);
 		StartCoroutine (AfterMove());
 	}
