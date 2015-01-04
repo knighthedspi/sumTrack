@@ -64,7 +64,6 @@ public class Block : MonoBehaviour {
 	public void OnOriginPassed()
 	{
 		int newType = (int)blockInfo.type - 1;
-		Debug.Log ("new Type ----    " + ((BlockType)newType).ToString ());
 		if (newType < (int)BlockType.normalDone || newType > (int)BlockType.normalTri)
 						return;
 		BlockInfo newInfo 	= new BlockInfo (blockInfo);
@@ -75,7 +74,6 @@ public class Block : MonoBehaviour {
 
 	public void MoveTo(Block block)
 	{
-		Debug.Log("On Move");
 		BlockInfo info = block.blockInfo;
 
 		if (info.type == BlockType.start || info.type == BlockType.normalDone || info.type == BlockType.originDone)

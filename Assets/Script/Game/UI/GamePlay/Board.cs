@@ -2,18 +2,30 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Board : MonoBehaviour {
+public class Board : WindowItemBase {
 
 
 	private List<Block> blocks;
 	public Block blockPrefab;
 	public Block currentSelected { set; get; }
 
-	void Awake()
+	public override void PreLoad ()
 	{
-		 blocks = new List<Block> ();
-
+		if(blocks.Count <= 0)
+			Init (GamePlayService.CreateBlockList ());
+		base.PreLoad ();
 	}
+
+	protected override void Awake ()
+	{
+		base.Awake ();
+		blocks = new List<Block> ();
+	}
+//	void Awake()
+//	{
+//		 blocks = new List<Block> ();
+//
+//	}
 
 	void Update()
 	{
@@ -64,6 +76,11 @@ public class Board : MonoBehaviour {
 			blocks.Add(block);
 		}
 		
+	}
+
+	public void OnOptionBtnClick()
+	{
+		WindowManager.Instance.ChangeWindow (WindowName.Option, TransitionType.TopToBottom);
 	}
 
 

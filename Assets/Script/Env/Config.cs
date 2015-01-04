@@ -35,6 +35,8 @@ public static class Config
 
 	public const int			  		COUNT_OF_MONSTERS     			= 5;	
 	public const int					COUNT_OF_TROOPS					= 3;
+
+	public const string 				WINDOW_PATH						= "Prefab/Windows/";
 	public const string			  		MONSTER_RESOURCE_PREFIX			= "Prefab/Monster/";	
 	public const string					DIALOG_RESOURCE_PREFIX			= "Prefab/Dialog/";
 	public const string					PARTICLE_RESOURCE_PREFIX		= "Prefab/particle/";
