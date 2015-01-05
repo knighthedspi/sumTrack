@@ -68,10 +68,6 @@ public class Board : MonoBehaviour {
 		
 	}
 
-	public void OnOptionBtnClick()
-	{
-		WindowManager.Instance.ChangeWindow (WindowName.OptionWindow, TransitionType.TopToBottom);
-	}
 
 
 

@@ -12,7 +12,9 @@ public class OptionWindow : WindowItemBase {
 	public List<GameObject> listPrefab;
 
 	public int optionWidth 	= 200;
-	public UILabel title;
+//	public UILabel title;
+	
+
 	Vector3 originPos;
 
 	protected override void Awake ()
@@ -55,7 +57,7 @@ public class OptionWindow : WindowItemBase {
 
 	public void OnHomeBtnClick()
 	{
-		WindowManager.Instance.ChangeWindow (WindowName.BoardWindow,TransitionType.BottomToTop);
+		WindowManager.Instance.ChangeWindow (WindowName.BoardWindow,TransitionType.TopToBottom);
 	}
 	private void ChangeCurrentOption(int index)
 	{
@@ -65,11 +67,7 @@ public class OptionWindow : WindowItemBase {
 		GamePlayService.MoveToAnimation(_uigrid.gameObject,origin,target,0.1f,"OnMoveFinish",this.gameObject);
 	}
 
-	private void ShowTitle()
-	{
-		title.text = _listItem[_index].optionName;
-		GamePlayService.MoveToAnimation(title.gameObject,new Vector3(0,550,0),new Vector3(0,330,0),0.1f);
-	}
+
 
 	private void CreateOption()
 	{
@@ -84,6 +82,7 @@ public class OptionWindow : WindowItemBase {
 
 	public void OnMoveFinish()
 	{
+		title.text = _listItem [_index].optionName;
 		ShowTitle();
 	}
 

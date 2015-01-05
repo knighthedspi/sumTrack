@@ -18,6 +18,7 @@ public class BoardWindow : WindowItemBase {
 
 		int level = AppManager.Instance.playingLevel;
 		Board board = dicBoard.ContainsKey (level) ? dicBoard [level] : CreateNewBoard (level);
+		title.text = string.Format ("Level " + level.ToString ());
 		base.PreLoad ();
 	}
 
@@ -36,5 +37,11 @@ public class BoardWindow : WindowItemBase {
 		}
 		return board;
 	}
+
+	public void OnOptionBtnClick()
+	{
+		WindowManager.Instance.ChangeWindow (WindowName.OptionWindow, TransitionType.BottomToTop);
+	}
+
 
 }
