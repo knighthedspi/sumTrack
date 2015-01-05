@@ -44,6 +44,26 @@ public class GamePlayService  {
 		return blockInfo;
 	}
 
+	public static void MoveToAnimation(GameObject go, Vector3 originPos, Vector3 targetPos,float time)
+	{
+		go.transform.localPosition = originPos;
+		iTween.MoveTo(go,iTween.Hash("position",targetPos,"isLocal",true,"time",time,"easetype","linear"));
+	}
+
+	public static void MoveToAnimation(GameObject go,Vector3 originPos, Vector3 targetPos,float time,string callback,GameObject completeTarget)
+	{
+		if(string.IsNullOrEmpty(callback))
+		{
+			MoveToAnimation(go,originPos,targetPos,time);
+		}
+		else
+		{
+			go.transform.localPosition = originPos;
+			iTween.MoveTo(go,iTween.Hash("position",targetPos,"isLocal",true,"time",time,"easetype","linear","oncomplete",callback,"oncompletetarget",completeTarget));
+		}
+
+	}
+
 	public static List<BlockInfo> CreateBlockList()
 	{
 		List<BlockInfo> infos = new List<BlockInfo> ();
