@@ -55,7 +55,7 @@ public class OptionWindow : WindowItemBase {
 
 	public void OnHomeBtnClick()
 	{
-		WindowManager.Instance.ChangeWindow (WindowName.Board,TransitionType.BottomToTop);
+		WindowManager.Instance.ChangeWindow (WindowName.BoardWindow,TransitionType.BottomToTop);
 	}
 	private void ChangeCurrentOption(int index)
 	{

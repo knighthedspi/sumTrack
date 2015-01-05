@@ -3,8 +3,8 @@ using System.Collections;
 
 public enum WindowName
 {
-	Board = 0,
-	Option,
+	BoardWindow = 0,
+	OptionWindow,
 }
 
 public enum TransitionType

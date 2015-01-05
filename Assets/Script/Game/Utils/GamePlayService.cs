@@ -64,7 +64,7 @@ public class GamePlayService  {
 
 	}
 
-	public static List<BlockInfo> CreateBlockList()
+	public static List<BlockInfo> CreateBlockList(int level)
 	{
 		List<BlockInfo> infos = new List<BlockInfo> ();
 		for(int i = 0; i< 9; i++)
