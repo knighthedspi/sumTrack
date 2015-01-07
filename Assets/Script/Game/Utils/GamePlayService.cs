@@ -105,7 +105,7 @@ public class GamePlayService  {
 		for(int i = 0; i < mapData[level].Count; i ++)
 		{
 			BlockInfo blockInfo = new BlockInfo();
-			blockInfo.posInBoard = mapData[level][i].posInBoard;
+			blockInfo.posInBoard = mapData[level][i].posInBoard + new Vector2(1,2);
 			blockInfo.num = mapData[level][i].num;
 			blockInfo.type = mapData[level][i].type;
 			infos.Add(blockInfo);

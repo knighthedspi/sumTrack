@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class BoardWindow : WindowItemBase {
 	private Dictionary<int, Board> dicBoard ;
 	public GameObject boardPrefab;
-	public int currentLevel;
 
 	protected override void Awake ()
 	{
@@ -16,8 +15,7 @@ public class BoardWindow : WindowItemBase {
 	public override void PreLoad ()
 	{
 		// TODO : fix level , should be loaded from appManager
-//		int level = AppManager.Instance.playingLevel;
-		int level = 1;
+		int level = AppManager.Instance.playingLevel;
 		Board board = dicBoard.ContainsKey (level) ? dicBoard [level] : CreateNewBoard (level);
 		title.text = string.Format ("Level " + level.ToString ());
 		base.PreLoad ();
@@ -46,7 +44,7 @@ public class BoardWindow : WindowItemBase {
 
 	public void OnResetBtnClick()
 	{
-		dicBoard [currentLevel].ResetGameAnim ();
+		dicBoard [AppManager.Instance.playingLevel].ResetGameAnim ();
 	}
 
 
