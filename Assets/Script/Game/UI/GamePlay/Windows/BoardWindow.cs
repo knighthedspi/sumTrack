@@ -44,5 +44,10 @@ public class BoardWindow : WindowItemBase {
 		WindowManager.Instance.ChangeWindow (WindowName.OptionWindow, TransitionType.BottomToTop);
 	}
 
+	public void OnResetBtnClick()
+	{
+		dicBoard [currentLevel].ResetGameAnim ();
+	}
+
 
 }

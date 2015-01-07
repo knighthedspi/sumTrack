@@ -113,11 +113,21 @@ public class GamePlayService  {
 		return infos;
 	}
 
+	/// <summary>
+	/// Moves to animatin using iTween
+	/// </summary>
+
+
 	public static void MoveToAnimation(GameObject go, Vector3 originPos, Vector3 targetPos,float time)
 	{
 		go.transform.localPosition = originPos;
 		iTween.MoveTo(go,iTween.Hash("position",targetPos,"isLocal",true,"time",time,"easetype","linear"));
 	}
+
+
+	/// <summary>
+	/// Moves to animatin using iTween
+	/// </summary>
 
 	public static void MoveToAnimation(GameObject go,Vector3 originPos, Vector3 targetPos,float time,string callback,GameObject completeTarget)
 	{
@@ -132,5 +142,27 @@ public class GamePlayService  {
 		}
 
 	}
+
+	/// <summary>
+	/// Scales to animation using iTween
+	/// </summary>
+
+	public static void ScaleTo(GameObject go,Vector3 originScale, Vector3 scale,float time,string easeType, string callback , GameObject completeTarget)
+	{
+		go.transform.localScale = originScale;
+		iTween.ScaleTo (go,iTween.Hash("scale",scale,"isLocal",true,"time",time,"easetype",easeType,"oncomplete",callback,"oncompletetarget",completeTarget));
+	}
+
+	/// <summary>
+	/// Scales to animation using iTween
+	/// </summary>
+
+	public static void ScaleTo(GameObject go,Vector3 originScale, Vector3 scale, float time,string easeType)
+	{
+		go.transform.localScale = originScale;
+		iTween.ScaleTo (go,iTween.Hash("scale",scale,"isLocal",true,"time",time,"easetype",easeType));
+	}
+
+
 }
  
