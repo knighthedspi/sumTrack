@@ -44,6 +44,7 @@ public class WindowManager : Singleton<WindowManager> {
 		{
 			// init first window
 			item.transform.localPosition = Vector3.zero;
+			item.ShowHeaderFooter();
 			OnWindowMoveDone(item);
 		}
 

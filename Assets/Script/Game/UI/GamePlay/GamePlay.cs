@@ -14,9 +14,7 @@ public class GamePlay : MonoBehaviour {
 	void Start()
 	{
 		Debug.Log("start------------------");
-		WindowManager.Instance.ChangeWindow (WindowName.Board,TransitionType.TopToBottom);
-//		board.Init (CreateBlockList ());
-//		CreateBlockList ();
+		WindowManager.Instance.ChangeWindow (WindowName.BoardWindow,TransitionType.TopToBottom);
 	}
 
 

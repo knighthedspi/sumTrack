@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,13 +44,7 @@ public class GamePlayService  {
 		}
 		return blockInfo;
 	}
-
-	// TODO : fix level
-	public static List<BlockInfo> CreateBlockList()
-	{
-		return CreateBlockListFromLevel(7);
-	}
-
+	
 	public static Dictionary<int,List<BlockInfo>> mapData;
 
 	public static void loadAllMap()
@@ -105,7 +99,7 @@ public class GamePlayService  {
 		}
 	}
 
-	public static List<BlockInfo> CreateBlockListFromLevel(int level)
+	public static List<BlockInfo> CreateBlockList(int level)
 	{
 		List<BlockInfo> infos = new List<BlockInfo> ();
 		for(int i = 0; i < mapData[level].Count; i ++)
@@ -117,6 +111,26 @@ public class GamePlayService  {
 			infos.Add(blockInfo);
 		}
 		return infos;
+	}
+
+	public static void MoveToAnimation(GameObject go, Vector3 originPos, Vector3 targetPos,float time)
+	{
+		go.transform.localPosition = originPos;
+		iTween.MoveTo(go,iTween.Hash("position",targetPos,"isLocal",true,"time",time,"easetype","linear"));
+	}
+
+	public static void MoveToAnimation(GameObject go,Vector3 originPos, Vector3 targetPos,float time,string callback,GameObject completeTarget)
+	{
+		if(string.IsNullOrEmpty(callback))
+		{
+			MoveToAnimation(go,originPos,targetPos,time);
+		}
+		else
+		{
+			go.transform.localPosition = originPos;
+			iTween.MoveTo(go,iTween.Hash("position",targetPos,"isLocal",true,"time",time,"easetype","linear","oncomplete",callback,"oncompletetarget",completeTarget));
+		}
+
 	}
 }
  

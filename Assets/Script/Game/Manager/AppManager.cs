@@ -4,6 +4,7 @@ using System.Collections;
 public class AppManager : Singleton<AppManager>
 {
 	public GamePlayInfo gamePlayInfo;
+	public int playingLevel { set; get;}
 
 	void Start()
 	{

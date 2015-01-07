@@ -44,6 +44,12 @@ public static class Config
 	public const string 				EFFECT_PATH						= "Prefab/Effect/";
 	public const string					BACKGROUND_TEXTURE_PREFIX		= "Texture/Background/bg";
 
+
+	public static readonly Vector3 		HEADER_IN 						= new Vector3 (0, 360, 0);
+	public static readonly Vector3 		HEADER_OUT 						= new Vector3 (0, 550, 0);
+	public static readonly Vector3 		FOOTER_IN 						= new Vector3 (0, -360, 0);
+	public static readonly Vector3 		FOOTER_OUT 						= new Vector3 (0, -550, 0);
+
 	public static readonly Vector3		CHARACTER_POSITION				= new Vector3(-100, 290, 0);
 	public static readonly Vector3 		CHARACTER_DIRECTION				= Vector3.zero;
 	public static readonly Vector3 		MONSTER_POSITION				= new Vector3(30, 300, 0);		 

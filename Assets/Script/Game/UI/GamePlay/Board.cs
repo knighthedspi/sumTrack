@@ -1,32 +1,20 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Board : WindowItemBase {
+public class Board : MonoBehaviour {
 
 
 	private List<Block> blocks;
 	public Block blockPrefab;
 	public Block currentSelected { set; get; }
 
-	public override void PreLoad ()
-	{
-		if(blocks.Count <= 0)
-			Init (GamePlayService.CreateBlockList ());
-		base.PreLoad ();
-	}
 
-	protected override void Awake ()
+	void Awake()
 	{
-		base.Awake ();
 		blocks = new List<Block> ();
 		GamePlayService.loadAllMap();
 	}
-//	void Awake()
-//	{
-//		 blocks = new List<Block> ();
-//
-//	}
 
 	void Update()
 	{
@@ -63,8 +51,9 @@ public class Board : WindowItemBase {
 		}
 	}
 
-	public void Init(List<BlockInfo> blockInfoes)
+	public void Init(int level)
 	{
+		List<BlockInfo> blockInfoes = GamePlayService.CreateBlockList (level);
 		blocks.Clear ();
 		blockInfoes = GamePlayService.AddStartToOrigin (blockInfoes);
 
@@ -79,10 +68,6 @@ public class Board : WindowItemBase {
 		
 	}
 
-	public void OnOptionBtnClick()
-	{
-		WindowManager.Instance.ChangeWindow (WindowName.Option, TransitionType.TopToBottom);
-	}
 
 
 
