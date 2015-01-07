@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,8 +12,8 @@ public class Board : MonoBehaviour {
 
 	void Awake()
 	{
-		 blocks = new List<Block> ();
-
+		blocks = new List<Block> ();
+		GamePlayService.loadAllMap();
 	}
 
 	void Update()

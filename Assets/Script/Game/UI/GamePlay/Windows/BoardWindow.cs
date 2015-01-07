@@ -15,8 +15,9 @@ public class BoardWindow : WindowItemBase {
 
 	public override void PreLoad ()
 	{
-
-		int level = AppManager.Instance.playingLevel;
+		// TODO : fix level , should be loaded from appManager
+//		int level = AppManager.Instance.playingLevel;
+		int level = 1;
 		Board board = dicBoard.ContainsKey (level) ? dicBoard [level] : CreateNewBoard (level);
 		title.text = string.Format ("Level " + level.ToString ());
 		base.PreLoad ();
