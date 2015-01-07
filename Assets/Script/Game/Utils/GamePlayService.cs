@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -44,50 +45,77 @@ public class GamePlayService  {
 		return blockInfo;
 	}
 
+	// TODO : fix level
 	public static List<BlockInfo> CreateBlockList()
 	{
-		List<BlockInfo> infos = new List<BlockInfo> ();
-		for(int i = 0; i< 9; i++)
+		return CreateBlockListFromLevel(7);
+	}
+
+	public static Dictionary<int,List<BlockInfo>> mapData;
+
+	public static void loadAllMap()
+	{
+		Map data = Resources.Load("Map/map") as Map;
+		mapData = new Dictionary<int, List<BlockInfo>>(data.dataArray.Length);
+		for(int i = 0; i < data.dataArray.Length; i++)
 		{
-			BlockInfo Inf = new BlockInfo();
-			Inf.num = i;
-			Inf.type = BlockType.normal;
-			infos.Add(Inf);
+			List<BlockInfo> mapItem = new List<BlockInfo>();
+			string [] lines = data.dataArray[i].Map.Split("\n"[0]);
+			for(int j = 0; j < lines.Length; j++)
+			{
+				if(lines[j].Trim().Equals(""))
+					break;
+				string [] blockInfo = lines[j].Split(" "[0]);
+				for(int k = 0; k < blockInfo.Length; k ++)
+				{
+					if(blockInfo[k].Trim().Equals(""))
+						break;
+					string [] info = blockInfo[k].Split(";"[0]);
+					int num = 0;
+					Int32.TryParse(info[0], out num);
+					if(num!=0)
+					{
+						int type = 0;
+						Int32.TryParse(info[1], out type);
+						BlockInfo block = new BlockInfo();
+						block.posInBoard = new Vector2(k, j);
+						block.num = num;
+						switch(type)
+						{
+							case 0:
+								block.type = BlockType.origin;
+								break;
+							case 1:
+								block.type = BlockType.normal;
+								break;
+							case 2:
+								block.type = BlockType.normalTwice;
+								break;
+							case 3:
+								block.type = BlockType.normalTri;
+								break;
+							default:
+								break;
+						}
+						mapItem.Add(block);
+					}
+				}
+			}
+			mapData.Add(data.dataArray[i].Level, mapItem);
 		}
-		infos [0].posInBoard = new Vector2 (2, 2);
-		infos [0].num = 11;
-		infos [0].type = BlockType.origin;
-		
-		infos [1].posInBoard = new Vector2 (1, 3);
-		infos [1].num = 1;
-		
-		infos [2].posInBoard = new Vector2 (2, 3);
-		infos [2].num = 5;
-		infos [2].type = BlockType.normalTwice;
-		
-		infos [3].posInBoard = new Vector2 (0, 4);
-		infos [3].num = 10;
-		infos [3].type = BlockType.origin;
-		
-		infos [4].posInBoard = new Vector2 (1, 4);
-		infos [4].num = 3;
-		
-		infos [5].posInBoard = new Vector2 (2, 4);
-		infos [5].num = 4;
-		infos [5].type = BlockType.normalTri;
-		
-		infos [6].posInBoard = new Vector2 (3, 4);
-		infos [6].num = 2;
-		infos [6].type = BlockType.normalTwice;
-		
-		infos [7].posInBoard = new Vector2 (2, 5);
-		infos [7].num = 3;
-		
-		infos [8].posInBoard = new Vector2 (3, 5);
-		infos [8].num = 12;
-		infos [8].type = BlockType.origin;
-		
-		
+	}
+
+	public static List<BlockInfo> CreateBlockListFromLevel(int level)
+	{
+		List<BlockInfo> infos = new List<BlockInfo> ();
+		for(int i = 0; i < mapData[level].Count; i ++)
+		{
+			BlockInfo blockInfo = new BlockInfo();
+			blockInfo.posInBoard = mapData[level][i].posInBoard;
+			blockInfo.num = mapData[level][i].num;
+			blockInfo.type = mapData[level][i].type;
+			infos.Add(blockInfo);
+		}
 		return infos;
 	}
 }

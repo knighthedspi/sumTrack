@@ -20,6 +20,7 @@ public class Board : WindowItemBase {
 	{
 		base.Awake ();
 		blocks = new List<Block> ();
+		GamePlayService.loadAllMap();
 	}
 //	void Awake()
 //	{
