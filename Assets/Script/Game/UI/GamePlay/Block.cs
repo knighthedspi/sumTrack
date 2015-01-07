@@ -94,7 +94,7 @@ public class Block : MonoBehaviour {
 		{
 			_isMoving = true;
 			Vector3 target = _listMove [0].transform.localPosition;
-			iTween.MoveTo (gameObject, iTween.Hash ("position", target, "time", 0.5f, "isLocal", true, "oncomplete", "OnMoveComplete"));
+			iTween.MoveTo (gameObject, iTween.Hash ("position", target, "time", 0.5f, "isLocal", true,"easetype","easeOutElastic", "oncomplete", "OnMoveComplete"));
 		}
 		else 
 		{
@@ -102,6 +102,11 @@ public class Block : MonoBehaviour {
 			ProcessMove();
 		}
 
+	}
+
+	public void Destroy()
+	{
+		Destroy (gameObject);
 	}
 
 	private void OnMoveComplete()
