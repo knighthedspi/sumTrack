@@ -27,6 +27,9 @@ public class Block : MonoBehaviour {
 	public UISprite foreground;
 	public UILabel numLabel;
 
+	public delegate void MoveComplete();
+	public MoveComplete moveComplete;
+
 	public BlockInfo blockInfo
 	{
 		set
@@ -90,6 +93,12 @@ public class Block : MonoBehaviour {
 		Debug.Log ("list move ----- " + _listMove.Count.ToString ());
 		if (_isMoving || _listMove.Count <= 0)
 						return;
+		// if block changed to done
+		if(blockInfo.type != BlockType.origin)
+		{
+			_listMove.Clear();
+			return ;
+		}
 		if(GamePlayService.CheckNeibor( blockInfo.posInBoard, _listMove[0].blockInfo.posInBoard))
 		{
 			_isMoving = true;
@@ -123,6 +132,7 @@ public class Block : MonoBehaviour {
 
 		passedBlock.OnOriginPassed ();
 		_listMove.RemoveAt (0);
+		moveComplete ();
 		StartCoroutine (AfterMove());
 	}
 
