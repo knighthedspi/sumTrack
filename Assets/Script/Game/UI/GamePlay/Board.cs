@@ -11,6 +11,10 @@ public class Board : MonoBehaviour {
 
 	private int _destroyCount = 0;
 	private int _currentLevel ;
+	private bool _isFinish = false;
+
+	public delegate void OnGameFinish();
+	public OnGameFinish finish;
 
 	void Awake()
 	{
@@ -20,6 +24,8 @@ public class Board : MonoBehaviour {
 
 	void Update()
 	{
+		if (_isFinish)
+						return;
 		if(Input.GetMouseButton(0))
 		{
 			if(UICamera.hoveredObject != null )
@@ -55,7 +61,8 @@ public class Board : MonoBehaviour {
 
 	public void Init(int level)
 	{
-		_currentLevel = level;
+		_currentLevel 	= level;
+		_isFinish 		= false;
 		List<BlockInfo> blockInfoes = GamePlayService.CreateBlockList (level);
 		blocks.Clear ();
 		blockInfoes = GamePlayService.AddStartToOrigin (blockInfoes);
@@ -66,10 +73,11 @@ public class Board : MonoBehaviour {
 			block.transform.parent = transform;
 			block.transform.localScale = Vector3.zero;
 			block.blockInfo = info;
+			block.moveComplete = OnBlockMoveComplete;
 			blocks.Add(block);
 		}
 		
-		StartCoroutine (StartGameAnim ());
+
 	}
 
 	public IEnumerator StartGameAnim()
@@ -109,8 +117,25 @@ public class Board : MonoBehaviour {
 			}
 			blocks.Clear();
 			Init (_currentLevel);
+			StartCoroutine(StartGameAnim());
 		}
 
+	}
+
+	private void OnBlockMoveComplete()
+	{
+		if (_isFinish)
+						return;
+		_isFinish = CheckWin ();
+		if (_isFinish)
+						finish ();
+	}
+
+	private bool CheckWin ()
+	{
+		 List<Block> hasPointBlock = blocks.FindAll (x => (x.blockInfo.type == BlockType.origin || x.blockInfo.type == BlockType.normal
+						|| x.blockInfo.type == BlockType.normalTri || x.blockInfo.type == BlockType.normalTwice));
+		return (hasPointBlock.Count <= 0);
 	}
 
 
