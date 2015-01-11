@@ -9,6 +9,12 @@ public class WindowManager : Singleton<WindowManager> {
 	private bool _isChanging = false;
 	private TransitionType _transType;
 
+	public Transform footerLeft;
+	public Transform footerRight;
+	public Transform headerLeft;
+	public Transform headerRight;
+
+
 	void Awake()
 	{
 		_windowItems = new List<WindowItemBase> ();

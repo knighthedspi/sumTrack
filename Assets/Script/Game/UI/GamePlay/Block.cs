@@ -4,16 +4,16 @@ using System.Collections.Generic;
 
 public class Block : MonoBehaviour {
 
-	const string CIRCLE_BG 		= "circle_bg";
-	const string CIRCLE_NORMAL	= "circle0";
-	const string CIRCLE_TWICE	= "circle1";
-	const string CIRCLE_TRI		= "circle2";
-	const string CIRCLE_DONE	= "done";
-	const string RETANGLE_BG	= "retangle1";
-	const string RETANGLE_NORMAL	= "retangle0";
-	const string RETANGlE_DONE_BG 	= "done0";
-	const string RETANGlE_DONE_FG 	= "done1";
-	const string START				= "start";
+	const string CIRCLE_BG 		= "";
+	const string CIRCLE_NORMAL	= "lv1";
+	const string CIRCLE_TWICE	= "lv2";
+	const string CIRCLE_TRI		= "lv3";
+	const string CIRCLE_DONE	= "";
+	const string RETANGLE_BG	= "origin";
+	const string RETANGLE_NORMAL	= "";
+	const string RETANGlE_DONE_BG 	= "done1";
+	const string RETANGlE_DONE_FG 	= "";
+	const string START				= "";
 
 	private BlockInfo _info;
 	private GamePlay _gamePlay;
@@ -103,7 +103,7 @@ public class Block : MonoBehaviour {
 		{
 			_isMoving = true;
 			Vector3 target = _listMove [0].transform.localPosition;
-			iTween.MoveTo (gameObject, iTween.Hash ("position", target, "time", 0.5f, "isLocal", true,"easetype","easeOutElastic", "oncomplete", "OnMoveComplete"));
+			iTween.MoveTo (gameObject, iTween.Hash ("position", target, "time", 0.2f, "isLocal", true,"easetype","easeOutElastic", "oncomplete", "OnMoveComplete"));
 		}
 		else 
 		{
@@ -149,6 +149,7 @@ public class Block : MonoBehaviour {
 	private void SetImageByType(BlockType type)
 	{
 		_uiwidget.depth = 1;
+		numLabel.color = Color.black;
 		switch (type)
 		{
 		case BlockType.normal:
@@ -177,6 +178,7 @@ public class Block : MonoBehaviour {
 			background.GetComponent<UIWidget>().depth = 4;
 			foreground.GetComponent<UIWidget>().depth = 5;
 			numLabel.GetComponent<UIWidget>().depth = 6;
+			numLabel.color = Color.white;
 			_uiwidget.depth = 3;
 			break;
 
