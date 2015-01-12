@@ -13,12 +13,25 @@ public class Board : MonoBehaviour {
 	private int _currentLevel ;
 	private bool _isFinish = false;
 
+	private int minBoundX = 0;
+	private int minBoundY = 0;
+	private int maxBoundX = 5;
+	private int maxBoundY = 7;
+
+	private BoardLine _boardLine;
+	private GamePlayInfo _setup;
+	public Vector2 boardSize;
+
+
 	public delegate void OnGameFinish();
 	public OnGameFinish finish;
 
 	void Awake()
 	{
 		blocks = new List<Block> ();
+		boardSize = new Vector2 ();
+		_setup = AppManager.Instance.gamePlayInfo;
+		_boardLine = GetComponent<BoardLine> ();
 		GamePlayService.loadAllMap();
 	}
 
@@ -65,19 +78,42 @@ public class Board : MonoBehaviour {
 		_isFinish 		= false;
 		List<BlockInfo> blockInfoes = GamePlayService.CreateBlockList (level);
 		blocks.Clear ();
+
+		foreach(BlockInfo bl in blockInfoes)
+		{
+			Debug.Log(bl.posInBoard);
+		}
+
+
 		blockInfoes = GamePlayService.AddStartToOrigin (blockInfoes);
+
+		// calculate position
+		transform.localPosition -= new Vector3 (-_setup.boardSize.x/2 + boardSize.x/2, _setup.boardSize.y/2 - boardSize.y/2);
 
 		foreach(BlockInfo info in blockInfoes)
 		{
+			boardSize.x = (boardSize.x > info.posInBoard.x) ? boardSize.x : info.posInBoard.x;  
+			boardSize.y = (boardSize.y > info.posInBoard.y) ? boardSize.y : info.posInBoard.y;
+
+			// setuo block
 			Block block = blockPrefab.Spawn();
 			block.transform.parent = transform;
 			block.transform.localScale = Vector3.zero;
 			block.blockInfo = info;
 			block.moveComplete = OnBlockMoveComplete;
 			blocks.Add(block);
-		}
-		
 
+		}
+
+		maxBoundY = (int)boardSize.y;
+		maxBoundX = (int)boardSize.x;
+		// calculate board size
+		boardSize.x = (boardSize.x + 1) * _setup.blockSize.x;
+		boardSize.y = (boardSize.y +1) * _setup.blockSize.y;
+		Debug.Log (boardSize);
+
+
+		
 	}
 
 	public IEnumerator StartGameAnim()
@@ -128,7 +164,11 @@ public class Board : MonoBehaviour {
 						return;
 		_isFinish = CheckWin ();
 		if (_isFinish)
-						finish ();
+		{
+			CreateRetangleAnim();
+			finish ();
+		}
+						
 	}
 
 	private bool CheckWin ()
@@ -136,6 +176,16 @@ public class Board : MonoBehaviour {
 		 List<Block> hasPointBlock = blocks.FindAll (x => (x.blockInfo.type == BlockType.origin || x.blockInfo.type == BlockType.normal
 						|| x.blockInfo.type == BlockType.normalTri || x.blockInfo.type == BlockType.normalTwice));
 		return (hasPointBlock.Count <= 0);
+	}
+
+	private void CreateRetangleAnim()
+	{
+		List<Vector3> lines = new List<Vector3> ();
+		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (minBoundX, minBoundY)) + new Vector3(-100,100,0));
+		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (maxBoundX, minBoundY)) + new Vector3(100,100,0));
+		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (maxBoundX, maxBoundY)) + new Vector3(100,-100,0));
+		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (minBoundX, maxBoundY)) + new Vector3(-100,-100,0));
+		_boardLine.Init (lines);
 	}
 
 

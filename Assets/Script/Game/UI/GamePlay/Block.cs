@@ -4,16 +4,17 @@ using System.Collections.Generic;
 
 public class Block : MonoBehaviour {
 
-	const string CIRCLE_BG 		= "circle_bg";
-	const string CIRCLE_NORMAL	= "circle0";
-	const string CIRCLE_TWICE	= "circle1";
-	const string CIRCLE_TRI		= "circle2";
+	const string CIRCLE_BG 		= "";
+	const string CIRCLE_NORMAL	= "lv1";
+	const string CIRCLE_TWICE	= "lv2";
+	const string CIRCLE_TRI		= "lv3";
 	const string CIRCLE_DONE	= "done";
-	const string RETANGLE_BG	= "retangle1";
-	const string RETANGLE_NORMAL	= "retangle0";
-	const string RETANGlE_DONE_BG 	= "done0";
-	const string RETANGlE_DONE_FG 	= "done1";
-	const string START				= "start";
+	const string RETANGLE_BG	= "origin";
+	const string RETANGLE_NORMAL	= "";
+	const string RETANGlE_DONE_BG 	= "done1";
+	const string RETANGlE_DONE_FG 	= "";
+	const string START				= "";
+	const string ERROR 			= "error";
 
 	private BlockInfo _info;
 	private GamePlay _gamePlay;
@@ -103,7 +104,7 @@ public class Block : MonoBehaviour {
 		{
 			_isMoving = true;
 			Vector3 target = _listMove [0].transform.localPosition;
-			iTween.MoveTo (gameObject, iTween.Hash ("position", target, "time", 0.5f, "isLocal", true,"easetype","easeOutElastic", "oncomplete", "OnMoveComplete"));
+			iTween.MoveTo (gameObject, iTween.Hash ("position", target, "time", 0.2f, "isLocal", true,"easetype","easeOutElastic", "oncomplete", "OnMoveComplete"));
 		}
 		else 
 		{
@@ -127,7 +128,15 @@ public class Block : MonoBehaviour {
 		BlockInfo newInfo 		= new BlockInfo (blockInfo);
 		newInfo.posInBoard 		= passedBlock.blockInfo.posInBoard;
 		newInfo.num 			= blockInfo.num - passedBlock.blockInfo.num;
-		newInfo.type 			= (newInfo.num == 0) ? BlockType.originDone : newInfo.type;
+		if(newInfo.num == 0)
+		{
+			newInfo.type = BlockType.originDone;
+		}
+		else if(newInfo.num < 0)
+		{
+			newInfo.type = BlockType.error; 
+		}
+
 		blockInfo = newInfo;
 
 		passedBlock.OnOriginPassed ();
@@ -144,11 +153,17 @@ public class Block : MonoBehaviour {
 	}
 
 
+//	public void ScaleAnimWhenFinish(string complete, GameObject targer)
+//	{
+//		GamePlayService.ScaleTo (gameObject,transform.localScale,Vector3(1.1f,1.1f,1),0.1f,);
+//	}
+
 
 
 	private void SetImageByType(BlockType type)
 	{
 		_uiwidget.depth = 1;
+		numLabel.color = Color.black;
 		switch (type)
 		{
 		case BlockType.normal:
@@ -159,6 +174,7 @@ public class Block : MonoBehaviour {
 		case BlockType.normalDone:
 			background.spriteName = "";
 			foreground.spriteName = CIRCLE_DONE;
+			transform.localScale = Vector3.zero;
 			break;
 
 		case BlockType.normalTri:
@@ -177,18 +193,25 @@ public class Block : MonoBehaviour {
 			background.GetComponent<UIWidget>().depth = 4;
 			foreground.GetComponent<UIWidget>().depth = 5;
 			numLabel.GetComponent<UIWidget>().depth = 6;
+			numLabel.color = Color.white;
 			_uiwidget.depth = 3;
 			break;
 
 		case BlockType.start:
 			background.spriteName = "";
 			foreground.spriteName = START;
+			transform.localScale = Vector3.zero;
 			break;
 
 		case BlockType.originDone:
 			background.spriteName = RETANGlE_DONE_BG;
 			foreground.spriteName = RETANGlE_DONE_FG;
+
 			numLabel.gameObject.SetActive(false);
+			break;
+		case BlockType.error:
+			background.spriteName = ERROR;
+//			numLabel.text = "";
 			break;
 		}
 

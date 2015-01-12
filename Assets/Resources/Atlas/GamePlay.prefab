@@ -41,7 +41,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: a2893011dfdb645e5aa6cb3a28cd711f, type: 2}
   mSprites:
-  - name: background
+  - name: back
+    x: 147
+    y: 228
+    width: 146
+    height: 146
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: bg
     x: 0
     y: 1024
     width: 683
@@ -54,61 +67,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: circle_bg
-    x: 0
-    y: 422
-    width: 300
-    height: 300
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: circle0
-    x: 1206
-    y: 1788
-    width: 260
-    height: 260
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: circle1
-    x: 261
-    y: 161
-    width: 260
-    height: 260
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: circle2
-    x: 945
-    y: 1788
-    width: 260
-    height: 260
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: done
-    x: 602
-    y: 953
+    x: 301
+    y: 749
     width: 70
     height: 70
     borderLeft: 0
@@ -119,37 +80,37 @@ MonoBehaviour:
     paddingRight: 53
     paddingTop: 50
     paddingBottom: 57
-  - name: done0
-    x: 301
-    y: 423
-    width: 300
-    height: 299
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: done1
-    x: 684
-    y: 1788
-    width: 260
-    height: 260
+    x: 0
+    y: 522
+    width: 200
+    height: 200
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 3
-    paddingRight: 4
-    paddingTop: 3
-    paddingBottom: 4
-  - name: done2
-    x: 1090
-    y: 1618
-    width: 216
-    height: 169
+    paddingLeft: 1
+    paddingRight: 2
+    paddingTop: 1
+    paddingBottom: 2
+  - name: error
+    x: 201
+    y: 522
+    width: 200
+    height: 200
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 2
+    paddingTop: 1
+    paddingBottom: 2
+  - name: lv1
+    x: 147
+    y: 375
+    width: 146
+    height: 146
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -158,11 +119,50 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: home
-    x: 1307
-    y: 1621
-    width: 167
-    height: 166
+  - name: lv2
+    x: 0
+    y: 81
+    width: 146
+    height: 146
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: lv3
+    x: 0
+    y: 228
+    width: 146
+    height: 146
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: lv4
+    x: 0
+    y: 375
+    width: 146
+    height: 146
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: menu
+    x: 402
+    y: 576
+    width: 146
+    height: 146
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: moving
-    x: 301
+    x: 0
     y: 723
     width: 300
     height: 300
@@ -185,10 +185,36 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mute
-    x: 684
-    y: 1585
-    width: 202
-    height: 202
+    x: 147
+    y: 82
+    width: 145
+    height: 145
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 1
+  - name: only_effect
+    x: 294
+    y: 376
+    width: 145
+    height: 145
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 1
+  - name: origin
+    x: 301
+    y: 820
+    width: 203
+    height: 203
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -197,63 +223,11 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: option
-    x: 0
-    y: 25
-    width: 181
-    height: 135
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: replay
-    x: 1467
-    y: 1849
-    width: 225
-    height: 199
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: replay_all
-    x: 1693
-    y: 1842
-    width: 206
-    height: 206
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: retangle0
-    x: 0
-    y: 161
-    width: 260
-    height: 260
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: retangle1
-    x: 0
-    y: 723
-    width: 300
-    height: 300
+  - name: replay 1
+    x: 505
+    y: 730
+    width: 146
+    height: 146
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -263,8 +237,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: start
-    x: 261
-    y: 52
+    x: 549
+    y: 614
     width: 108
     height: 108
     borderLeft: 0
@@ -275,11 +249,24 @@ MonoBehaviour:
     paddingRight: 34
     paddingTop: 35
     paddingBottom: 34
+  - name: statusbg
+    x: 684
+    y: 1902
+    width: 1024
+    height: 146
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: volume
-    x: 887
-    y: 1585
-    width: 202
-    height: 202
+    x: 505
+    y: 877
+    width: 146
+    height: 146
     borderLeft: 0
     borderRight: 0
     borderTop: 0
