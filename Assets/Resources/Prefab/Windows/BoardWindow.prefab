@@ -852,6 +852,10 @@ MonoBehaviour:
   footer: {fileID: 100008}
   title: {fileID: 11400008}
   boardPrefab: {fileID: 100000, guid: c143a7677223f4310952833bb3f4447c, type: 2}
+  homeBtn: {fileID: 400030}
+  soundBtn: {fileID: 400006}
+  undoBtn: {fileID: 400024}
+  replayBtn: {fileID: 400012}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1

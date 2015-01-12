@@ -29,7 +29,7 @@ public class Board : MonoBehaviour {
 	void Awake()
 	{
 		blocks = new List<Block> ();
-		boardSize = new Vector2 ();
+
 		_setup = AppManager.Instance.gamePlayInfo;
 		_boardLine = GetComponent<BoardLine> ();
 		GamePlayService.loadAllMap();
@@ -76,6 +76,7 @@ public class Board : MonoBehaviour {
 	{
 		_currentLevel 	= level;
 		_isFinish 		= false;
+		boardSize = new Vector2 ();
 		List<BlockInfo> blockInfoes = GamePlayService.CreateBlockList (level);
 		blocks.Clear ();
 
@@ -87,8 +88,7 @@ public class Board : MonoBehaviour {
 
 		blockInfoes = GamePlayService.AddStartToOrigin (blockInfoes);
 
-		// calculate position
-		transform.localPosition -= new Vector3 (-_setup.boardSize.x/2 + boardSize.x/2, _setup.boardSize.y/2 - boardSize.y/2);
+
 
 		foreach(BlockInfo info in blockInfoes)
 		{
@@ -111,7 +111,9 @@ public class Board : MonoBehaviour {
 		boardSize.x = (boardSize.x + 1) * _setup.blockSize.x;
 		boardSize.y = (boardSize.y +1) * _setup.blockSize.y;
 		Debug.Log (boardSize);
-
+		// calculate position
+		transform.localPosition = Vector3.zero - new Vector3 (-_setup.boardSize.x + boardSize.x/2 - _setup.blockSize.x/2,
+		                                                      _setup.boardSize.y - boardSize.y/2 + _setup.blockSize.y/2);
 
 		
 	}
