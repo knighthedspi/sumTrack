@@ -22,7 +22,7 @@ public class GamePlayService  {
 			
 	}
 
-	public static Vector2 ConvertToPosition (Vector2 pos)
+	public static Vector3 ConvertToPosition (Vector2 pos)
 	{
 		GamePlayInfo setup = AppManager.Instance.gamePlayInfo;
 		float x = pos.x * setup.blockSize.x - setup.boardSize.x ;
@@ -102,10 +102,12 @@ public class GamePlayService  {
 	public static List<BlockInfo> CreateBlockList(int level)
 	{
 		List<BlockInfo> infos = new List<BlockInfo> ();
+		List<BlockInfo> data = mapData [level];
+
 		for(int i = 0; i < mapData[level].Count; i ++)
 		{
 			BlockInfo blockInfo = new BlockInfo();
-			blockInfo.posInBoard = mapData[level][i].posInBoard + new Vector2(1,2);
+			blockInfo.posInBoard = mapData[level][i].posInBoard ;
 			blockInfo.num = mapData[level][i].num;
 			blockInfo.type = mapData[level][i].type;
 			infos.Add(blockInfo);

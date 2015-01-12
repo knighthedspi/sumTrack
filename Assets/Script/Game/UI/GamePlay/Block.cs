@@ -8,12 +8,13 @@ public class Block : MonoBehaviour {
 	const string CIRCLE_NORMAL	= "lv1";
 	const string CIRCLE_TWICE	= "lv2";
 	const string CIRCLE_TRI		= "lv3";
-	const string CIRCLE_DONE	= "";
+	const string CIRCLE_DONE	= "done";
 	const string RETANGLE_BG	= "origin";
 	const string RETANGLE_NORMAL	= "";
 	const string RETANGlE_DONE_BG 	= "done1";
 	const string RETANGlE_DONE_FG 	= "";
 	const string START				= "";
+	const string ERROR 			= "error";
 
 	private BlockInfo _info;
 	private GamePlay _gamePlay;
@@ -127,7 +128,15 @@ public class Block : MonoBehaviour {
 		BlockInfo newInfo 		= new BlockInfo (blockInfo);
 		newInfo.posInBoard 		= passedBlock.blockInfo.posInBoard;
 		newInfo.num 			= blockInfo.num - passedBlock.blockInfo.num;
-		newInfo.type 			= (newInfo.num == 0) ? BlockType.originDone : newInfo.type;
+		if(newInfo.num == 0)
+		{
+			newInfo.type = BlockType.originDone;
+		}
+		else if(newInfo.num < 0)
+		{
+			newInfo.type = BlockType.error; 
+		}
+
 		blockInfo = newInfo;
 
 		passedBlock.OnOriginPassed ();
@@ -143,6 +152,11 @@ public class Block : MonoBehaviour {
 		ProcessMove ();
 	}
 
+
+//	public void ScaleAnimWhenFinish(string complete, GameObject targer)
+//	{
+//		GamePlayService.ScaleTo (gameObject,transform.localScale,Vector3(1.1f,1.1f,1),0.1f,);
+//	}
 
 
 
@@ -160,6 +174,7 @@ public class Block : MonoBehaviour {
 		case BlockType.normalDone:
 			background.spriteName = "";
 			foreground.spriteName = CIRCLE_DONE;
+			transform.localScale = Vector3.zero;
 			break;
 
 		case BlockType.normalTri:
@@ -185,12 +200,18 @@ public class Block : MonoBehaviour {
 		case BlockType.start:
 			background.spriteName = "";
 			foreground.spriteName = START;
+			transform.localScale = Vector3.zero;
 			break;
 
 		case BlockType.originDone:
 			background.spriteName = RETANGlE_DONE_BG;
 			foreground.spriteName = RETANGlE_DONE_FG;
+
 			numLabel.gameObject.SetActive(false);
+			break;
+		case BlockType.error:
+			background.spriteName = ERROR;
+//			numLabel.text = "";
 			break;
 		}
 

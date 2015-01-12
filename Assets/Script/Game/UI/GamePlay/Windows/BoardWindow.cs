@@ -33,8 +33,9 @@ public class BoardWindow : WindowItemBase {
 		title.text = string.Format ("Level " + level.ToString ());
 		if(_currentBoard != null)
 		{
-			GamePlayService.MoveToAnimation(board.gameObject,new Vector3(1000,0,0),Vector3.zero,0.5f,"OnLevelLoaded",this.gameObject);
-			GamePlayService.MoveToAnimation(_currentBoard.gameObject,Vector3.zero, new Vector3(-1000,0,0),0.5f);
+			Vector3 oldPos = board.transform.localPosition;
+			GamePlayService.MoveToAnimation(board.gameObject,oldPos + new Vector3(1000,0,0),oldPos,0.5f,"OnLevelLoaded",this.gameObject);
+			GamePlayService.MoveToAnimation(_currentBoard.gameObject,_currentBoard.transform.localPosition,_currentBoard.transform.localPosition + new Vector3(-1000,0,0),0.5f);
 		}
 		else
 		{

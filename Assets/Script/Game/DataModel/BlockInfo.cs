@@ -11,6 +11,7 @@ public enum BlockType
 	origin,
 	originDone,
 	start,
+	error,
 }
 
 

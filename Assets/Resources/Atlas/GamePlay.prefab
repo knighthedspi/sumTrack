@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: a2893011dfdb645e5aa6cb3a28cd711f, type: 2}
   mSprites:
   - name: back
-    x: 831
-    y: 1755
+    x: 147
+    y: 228
     width: 146
     height: 146
     borderLeft: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: done
-    x: 602
-    y: 953
+    x: 301
+    y: 749
     width: 70
     height: 70
     borderLeft: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
     paddingTop: 50
     paddingBottom: 57
   - name: done1
-    x: 207
-    y: 60
+    x: 0
+    y: 522
     width: 200
     height: 200
     borderLeft: 0
@@ -93,22 +93,9 @@ MonoBehaviour:
     paddingRight: 2
     paddingTop: 1
     paddingBottom: 2
-  - name: done2
-    x: 408
-    y: 292
-    width: 216
-    height: 169
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: error
-    x: 207
-    y: 261
+    x: 201
+    y: 522
     width: 200
     height: 200
     borderLeft: 0
@@ -119,22 +106,9 @@ MonoBehaviour:
     paddingRight: 2
     paddingTop: 1
     paddingBottom: 2
-  - name: home
-    x: 487
-    y: 556
-    width: 167
-    height: 166
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: lv1
-    x: 1125
-    y: 1755
+    x: 147
+    y: 375
     width: 146
     height: 146
     borderLeft: 0
@@ -146,8 +120,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv2
-    x: 684
-    y: 1755
+    x: 0
+    y: 81
     width: 146
     height: 146
     borderLeft: 0
@@ -159,8 +133,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv3
-    x: 1272
-    y: 1755
+    x: 0
+    y: 228
     width: 146
     height: 146
     borderLeft: 0
@@ -172,8 +146,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv4
-    x: 978
-    y: 1755
+    x: 0
+    y: 375
     width: 146
     height: 146
     borderLeft: 0
@@ -185,8 +159,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: menu
-    x: 1709
-    y: 1902
+    x: 402
+    y: 576
     width: 146
     height: 146
     borderLeft: 0
@@ -211,8 +185,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mute
-    x: 1565
-    y: 1756
+    x: 147
+    y: 82
     width: 145
     height: 145
     borderLeft: 0
@@ -224,8 +198,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: only_effect
-    x: 1419
-    y: 1756
+    x: 294
+    y: 376
     width: 145
     height: 145
     borderLeft: 0
@@ -236,22 +210,9 @@ MonoBehaviour:
     paddingRight: 1
     paddingTop: 0
     paddingBottom: 1
-  - name: option
-    x: 408
-    y: 156
-    width: 181
-    height: 135
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: origin
-    x: 0
-    y: 51
+    x: 301
+    y: 820
     width: 203
     height: 203
     borderLeft: 0
@@ -262,22 +223,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: replay
-    x: 261
-    y: 523
-    width: 225
-    height: 199
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: replay 1
-    x: 408
-    y: 9
+    x: 505
+    y: 730
     width: 146
     height: 146
     borderLeft: 0
@@ -288,48 +236,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: replay_all
-    x: 0
-    y: 255
-    width: 206
-    height: 206
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: retangle0
-    x: 0
-    y: 462
-    width: 260
-    height: 260
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: retangle1
-    x: 301
-    y: 723
-    width: 300
-    height: 300
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: start
-    x: 555
-    y: 47
+    x: 549
+    y: 614
     width: 108
     height: 108
     borderLeft: 0
@@ -354,8 +263,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: volume
-    x: 1856
-    y: 1902
+    x: 505
+    y: 877
     width: 146
     height: 146
     borderLeft: 0
