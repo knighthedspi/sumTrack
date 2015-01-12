@@ -9,7 +9,7 @@ public class BoardLine : MonoBehaviour {
 	private int _drawNum = 0;
 	public  float time = 1;
 
-	private EventDelegate.Callback OnComplete;
+	public EventDelegate.Callback OnComplete;
 
 	void Awake()
 	{
