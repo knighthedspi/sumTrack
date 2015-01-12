@@ -20,6 +20,7 @@ public class Board : MonoBehaviour {
 
 	private BoardLine _boardLine;
 	private GamePlayInfo _setup;
+	private int _scaleAnimIndex;
 	public Vector2 boardSize;
 
 
@@ -124,14 +125,16 @@ public class Board : MonoBehaviour {
 		List<Block> normalBlock = blocks.FindAll (x => x.blockInfo.type != BlockType.origin);
 		foreach(Block origin in originBlock)
 		{
-			GamePlayService.ScaleTo(origin.gameObject,Vector3.zero,Vector3.one,1.5f,Config.EASE_SCALE_OUT);
+
+				GamePlayService.ScaleTo(origin.gameObject,Vector3.zero,Vector3.one,1.5f,Config.EASE_SCALE_OUT);
 		}
 
 		yield return new WaitForSeconds (0.2f);
 
 		foreach(Block normal in normalBlock)
 		{
-			GamePlayService.ScaleTo(normal.gameObject,Vector3.zero,Vector3.one,1.5f,Config.EASE_SCALE_OUT);
+			if(normal.blockInfo.type != BlockType.start)
+				GamePlayService.ScaleTo(normal.gameObject,Vector3.zero,Vector3.one,1.5f,Config.EASE_SCALE_OUT);
 		}
 	}
 
@@ -168,7 +171,7 @@ public class Board : MonoBehaviour {
 		if (_isFinish)
 		{
 			CreateRetangleAnim();
-			finish ();
+
 		}
 						
 	}
@@ -187,7 +190,25 @@ public class Board : MonoBehaviour {
 		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (maxBoundX, minBoundY)) + new Vector3(100,100,0));
 		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (maxBoundX, maxBoundY)) + new Vector3(100,-100,0));
 		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (minBoundX, maxBoundY)) + new Vector3(-100,-100,0));
+		_boardLine.OnComplete = OnDrawLineComplete;
 		_boardLine.Init (lines);
+	}
+
+	private void OnDrawLineComplete()
+	{
+
+		StartCoroutine (StartScaleAnim());
+	}
+
+	private IEnumerator StartScaleAnim()
+	{
+		foreach(Block bl in blocks)
+		{
+			bl.ScaleAnimWhenFinish();
+			yield return new WaitForSeconds(0.1f);
+		}
+		finish ();
+
 	}
 
 

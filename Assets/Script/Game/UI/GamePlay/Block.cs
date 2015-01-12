@@ -13,7 +13,7 @@ public class Block : MonoBehaviour {
 	const string RETANGLE_NORMAL	= "";
 	const string RETANGlE_DONE_BG 	= "done1";
 	const string RETANGlE_DONE_FG 	= "";
-	const string START				= "";
+	const string START				= "start";
 	const string ERROR 			= "error";
 
 	private BlockInfo _info;
@@ -153,10 +153,10 @@ public class Block : MonoBehaviour {
 	}
 
 
-//	public void ScaleAnimWhenFinish(string complete, GameObject targer)
-//	{
-//		GamePlayService.ScaleTo (gameObject,transform.localScale,Vector3(1.1f,1.1f,1),0.1f,);
-//	}
+	public void ScaleAnimWhenFinish()
+	{
+		GamePlayService.ScaleTo (gameObject,transform.localScale, new Vector3(1.1f,1.1f,1),0.1f,"easeOutBack");
+	}
 
 
 

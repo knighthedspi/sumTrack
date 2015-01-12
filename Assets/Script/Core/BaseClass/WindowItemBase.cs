@@ -103,7 +103,7 @@ public class WindowItemBase : MonoBehaviour {
 						GamePlayService.MoveToAnimation (header, Config.HEADER_IN, Config.HEADER_OUT, 0.5f);
 		if(footer != null)
 				GamePlayService.MoveToAnimation (footer, Config.FOOTER_IN, Config.FOOTER_OUT, 0.5f);
-		HideTitle ();
+//		HideTitle ();
 	}
 
 	protected void ShowTitle()
