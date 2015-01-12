@@ -8,6 +8,10 @@ public class BoardWindow : WindowItemBase {
 	private int _nextLevel;
 
 	public GameObject boardPrefab;
+	public Transform homeBtn;
+	public Transform soundBtn;
+	public Transform undoBtn;
+	public Transform replayBtn;
 
 
 	protected override void Awake ()
@@ -30,6 +34,7 @@ public class BoardWindow : WindowItemBase {
 						return;
 		_nextLevel = level;
 		Board board = dicBoard.ContainsKey (level) ? dicBoard [level] : CreateNewBoard (level);
+
 		title.text = string.Format ("Level " + level.ToString ());
 		if(_currentBoard != null)
 		{
@@ -43,6 +48,17 @@ public class BoardWindow : WindowItemBase {
 			StartCoroutine(_currentBoard.StartGameAnim());
 		}
 
+
+
+	}
+
+	void Start()
+	{
+		// setup header footer button
+		homeBtn.localPosition 	= new Vector3 (WindowManager.Instance.headerLeft.localPosition.x,0,0);
+		soundBtn.localPosition 	= new Vector3 (WindowManager.Instance.headerRight.localPosition.x,0,0);
+		undoBtn.localPosition 	= new Vector3 (WindowManager.Instance.footerLeft.localPosition.x,0,0);
+		replayBtn.localPosition 	= new Vector3 (WindowManager.Instance.footerRight.localPosition.x,0,0);
 	}
 
 	public void OnLevelLoaded()
