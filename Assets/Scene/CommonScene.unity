@@ -74,6 +74,53 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &155898743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 155898744}
+  - 114: {fileID: 155898745}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &155898744
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155898743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: .3125, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 274603867}
+  m_RootOrder: 2
+--- !u!114 &155898745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155898743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849990045d0734347bff075f2019f46a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfConcurrentSE: 30
+  numberOfConcurrentENV: 3
+  BGM: []
+  SE: []
+  ENV: []
+  BGM_list: []
+  SE_list: []
+  ENV_list: []
 --- !u!1 &274603866
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +151,7 @@ Transform:
   m_Children:
   - {fileID: 1719254233}
   - {fileID: 2025672869}
+  - {fileID: 155898744}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &274603868
