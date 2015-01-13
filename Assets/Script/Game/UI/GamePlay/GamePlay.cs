@@ -6,6 +6,11 @@ public class GamePlay : MonoBehaviour {
 
 	public static GamePlay Instance;
 
+	public Transform footerLeft;
+	public Transform footerRight;
+	public Transform headerLeft;
+	public Transform headerRight;
+
 	void Awake()
 	{
 		Instance = this;

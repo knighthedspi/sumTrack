@@ -12,6 +12,21 @@ public class Board : MonoBehaviour {
 
 	private int _destroyCount = 0;
 	private int _currentLevel ;
+	private bool _isFinish = false;
+
+	private int minBoundX = 0;
+	private int minBoundY = 0;
+	private int maxBoundX = 5;
+	private int maxBoundY = 7;
+
+	private BoardLine _boardLine;
+	private GamePlayInfo _setup;
+	private int _scaleAnimIndex;
+	public Vector2 boardSize;
+
+
+	public delegate void OnGameFinish();
+	public OnGameFinish finish;
 
 	private List<Block> _historyBlocks;
 	private List<BlockInfo> _historyBlockInfos;
@@ -19,6 +34,9 @@ public class Board : MonoBehaviour {
 	void Awake()
 	{
 		blocks = new List<Block> ();
+
+		_setup = AppManager.Instance.gamePlayInfo;
+		_boardLine = GetComponent<BoardLine> ();
 		GamePlayService.loadAllMap();
 		_historyBlocks = new List<Block>();
 		_historyBlockInfos = new List<BlockInfo>();
@@ -26,6 +44,8 @@ public class Board : MonoBehaviour {
 
 	void Update()
 	{
+		if (_isFinish)
+						return;
 		if(Input.GetMouseButton(0))
 		{
 			if(UICamera.hoveredObject != null )
@@ -67,21 +87,48 @@ public class Board : MonoBehaviour {
 
 	public void Init(int level)
 	{
-		_currentLevel = level;
+		_currentLevel 	= level;
+		_isFinish 		= false;
+		boardSize = new Vector2 ();
 		List<BlockInfo> blockInfoes = GamePlayService.CreateBlockList (level);
 		blocks.Clear ();
+
+		foreach(BlockInfo bl in blockInfoes)
+		{
+			Debug.Log(bl.posInBoard);
+		}
+
+
 		blockInfoes = GamePlayService.AddStartToOrigin (blockInfoes);
+
+
 
 		foreach(BlockInfo info in blockInfoes)
 		{
+			boardSize.x = (boardSize.x > info.posInBoard.x) ? boardSize.x : info.posInBoard.x;  
+			boardSize.y = (boardSize.y > info.posInBoard.y) ? boardSize.y : info.posInBoard.y;
+
+			// setuo block
 			Block block = blockPrefab.Spawn();
 			block.transform.parent = transform;
 			block.transform.localScale = Vector3.zero;
 			block.blockInfo = info;
+			block.moveComplete = OnBlockMoveComplete;
 			blocks.Add(block);
+
 		}
+
+		maxBoundY = (int)boardSize.y;
+		maxBoundX = (int)boardSize.x;
+		// calculate board size
+		boardSize.x = (boardSize.x + 1) * _setup.blockSize.x;
+		boardSize.y = (boardSize.y +1) * _setup.blockSize.y;
+		Debug.Log (boardSize);
+		// calculate position
+		transform.localPosition = Vector3.zero - new Vector3 (-_setup.boardSize.x + boardSize.x/2 - _setup.blockSize.x/2,
+		                                                      _setup.boardSize.y - boardSize.y/2 + _setup.blockSize.y/2);
+
 		
-		StartCoroutine (StartGameAnim ());
 	}
 
 	public IEnumerator StartGameAnim()
@@ -90,14 +137,16 @@ public class Board : MonoBehaviour {
 		List<Block> normalBlock = blocks.FindAll (x => x.blockInfo.type != BlockType.origin);
 		foreach(Block origin in originBlock)
 		{
-			GamePlayService.ScaleTo(origin.gameObject,Vector3.zero,Vector3.one,1.5f,Config.EASE_SCALE_OUT);
+
+				GamePlayService.ScaleTo(origin.gameObject,Vector3.zero,Vector3.one,1.5f,Config.EASE_SCALE_OUT);
 		}
 
 		yield return new WaitForSeconds (0.2f);
 
 		foreach(Block normal in normalBlock)
 		{
-			GamePlayService.ScaleTo(normal.gameObject,Vector3.zero,Vector3.one,1.5f,Config.EASE_SCALE_OUT);
+			if(normal.blockInfo.type != BlockType.start)
+				GamePlayService.ScaleTo(normal.gameObject,Vector3.zero,Vector3.one,1.5f,Config.EASE_SCALE_OUT);
 		}
 	}
 
@@ -121,7 +170,56 @@ public class Board : MonoBehaviour {
 			}
 			blocks.Clear();
 			Init (_currentLevel);
+			StartCoroutine(StartGameAnim());
 		}
+
+	}
+
+	private void OnBlockMoveComplete()
+	{
+		if (_isFinish)
+						return;
+		_isFinish = CheckWin ();
+		if (_isFinish)
+		{
+			CreateRetangleAnim();
+
+		}
+						
+	}
+
+	private bool CheckWin ()
+	{
+		 List<Block> hasPointBlock = blocks.FindAll (x => (x.blockInfo.type == BlockType.origin || x.blockInfo.type == BlockType.normal
+						|| x.blockInfo.type == BlockType.normalTri || x.blockInfo.type == BlockType.normalTwice));
+		return (hasPointBlock.Count <= 0);
+	}
+
+	private void CreateRetangleAnim()
+	{
+		List<Vector3> lines = new List<Vector3> ();
+		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (minBoundX, minBoundY)) + new Vector3(-100,100,0));
+		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (maxBoundX, minBoundY)) + new Vector3(100,100,0));
+		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (maxBoundX, maxBoundY)) + new Vector3(100,-100,0));
+		lines.Add (GamePlayService.ConvertToPosition (new Vector2 (minBoundX, maxBoundY)) + new Vector3(-100,-100,0));
+		_boardLine.OnComplete = OnDrawLineComplete;
+		_boardLine.Init (lines);
+	}
+
+	private void OnDrawLineComplete()
+	{
+
+		StartCoroutine (StartScaleAnim());
+	}
+
+	private IEnumerator StartScaleAnim()
+	{
+		foreach(Block bl in blocks)
+		{
+			bl.ScaleAnimWhenFinish();
+			yield return new WaitForSeconds(0.1f);
+		}
+		finish ();
 
 	}
 

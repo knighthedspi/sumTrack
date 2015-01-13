@@ -85,13 +85,13 @@ public class WindowItemBase : MonoBehaviour {
 		if (header != null)
 		{
 			header.SetActive(true);
-			GamePlayService.MoveToAnimation (header, Config.HEADER_OUT, Config.HEADER_IN, 0.5f);
+			GamePlayService.MoveToAnimation (header, Config.HEADER_OUT, new Vector3(0,WindowManager.Instance.headerLeft.transform.localPosition.y,0), 0.5f);
 		}
 			
 		if(footer != null)
 		{
 			footer.SetActive(true);
-			GamePlayService.MoveToAnimation (footer, Config.FOOTER_OUT, Config.FOOTER_IN, 0.5f);
+			GamePlayService.MoveToAnimation (footer, Config.FOOTER_OUT, new Vector3(0,WindowManager.Instance.footerLeft.transform.localPosition.y,0), 0.5f);
 		}
 		ShowTitle ();
 
@@ -103,7 +103,7 @@ public class WindowItemBase : MonoBehaviour {
 						GamePlayService.MoveToAnimation (header, Config.HEADER_IN, Config.HEADER_OUT, 0.5f);
 		if(footer != null)
 				GamePlayService.MoveToAnimation (footer, Config.FOOTER_IN, Config.FOOTER_OUT, 0.5f);
-
+//		HideTitle ();
 	}
 
 	protected void ShowTitle()
@@ -111,6 +111,13 @@ public class WindowItemBase : MonoBehaviour {
 		if (title == null)
 						return;
 		title.gameObject.SetActive (true);
-		GamePlayService.MoveToAnimation(title.gameObject,new Vector3(0,550,0),new Vector3(0,330,0),0.1f);
+		GamePlayService.MoveToAnimation(title.gameObject,new Vector3(0,550,0),new Vector3(0,WindowManager.Instance.headerLeft.transform.localPosition.y,0),0.4f);
+	}
+
+	protected void HideTitle()
+	{
+		if (title == null)
+						return;
+		GamePlayService.MoveToAnimation(title.gameObject,new Vector3(0,WindowManager.Instance.headerLeft.transform.localPosition.y,0),new Vector3(0,550,0),0.4f);
 	}
 }
