@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -104,6 +104,10 @@ public class BoardWindow : WindowItemBase {
 		dicBoard [AppManager.Instance.playingLevel].ResetGameAnim ();
 	}
 
+	public void OnUndoBtnClick()
+	{
+		dicBoard [AppManager.Instance.playingLevel].OnUndoAction ();
+	}
 	public void OnGameFinish()
 	{
 		HideHeaderFooter ();

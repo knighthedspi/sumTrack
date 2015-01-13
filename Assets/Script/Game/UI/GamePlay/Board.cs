@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -27,6 +28,9 @@ public class Board : MonoBehaviour {
 	public delegate void OnGameFinish();
 	public OnGameFinish finish;
 
+	private List<Block> _historyBlocks;
+	private List<BlockInfo> _historyBlockInfos;
+
 	void Awake()
 	{
 		blocks = new List<Block> ();
@@ -34,6 +38,8 @@ public class Board : MonoBehaviour {
 		_setup = AppManager.Instance.gamePlayInfo;
 		_boardLine = GetComponent<BoardLine> ();
 		GamePlayService.loadAllMap();
+		_historyBlocks = new List<Block>();
+		_historyBlockInfos = new List<BlockInfo>();
 	}
 
 	void Update()
@@ -53,6 +59,12 @@ public class Board : MonoBehaviour {
 				Block hoverBlock = blocks.Find(x => x.gameObject == hoverObj);
 				if(hoverBlock == null)
 					return;
+				if(_historyBlocks.Find(x => x == hoverBlock) == null)
+				{
+					Debug.Log("Add block " + hoverBlock.blockInfo.num + " at pos " + hoverBlock.blockInfo.posInBoard);
+					_historyBlocks.Add(hoverBlock);
+					_historyBlockInfos.Add(hoverBlock.blockInfo);
+				}
 
 				if(hoverBlock.blockInfo.type == BlockType.origin)
 				{
@@ -211,7 +223,22 @@ public class Board : MonoBehaviour {
 
 	}
 
+	public void OnUndoAction()
+	{
+		if(_historyBlocks.Count < 1)
+			return;
+		Block currentBlock = _historyBlocks[_historyBlocks.Count - 1];
+		BlockInfo currentBlockInfo = _historyBlockInfos[_historyBlockInfos.Count - 1];
+		Debug.Log("Restore block " + currentBlock.blockInfo.posInBoard + ";" + currentBlockInfo.num + " with type is " + currentBlockInfo.type.ToString() );
+		Block matchBlock = blocks.Find(x => x.transform.localPosition == currentBlock.transform.localPosition);
+		if(matchBlock!=null)
+			matchBlock.blockInfo = currentBlockInfo;
+		currentBlock.blockInfo = currentBlockInfo;
+		Debug.Log("Restore block 2 " + currentBlock.blockInfo.posInBoard + ";" + currentBlockInfo.num + " with type is " + currentBlock.blockInfo.type.ToString() );
+		_historyBlocks.Remove(currentBlock);
+		_historyBlockInfos.Remove(currentBlockInfo);
+	}
 
-
+	
 
 }
