@@ -232,7 +232,11 @@ public class Board : MonoBehaviour {
 		Debug.Log("Restore block " + currentBlock.blockInfo.posInBoard + ";" + currentBlockInfo.num + " with type is " + currentBlockInfo.type.ToString() );
 		Block matchBlock = blocks.Find(x => x.transform.localPosition == currentBlock.transform.localPosition);
 		if(matchBlock!=null)
+		{
+			matchBlock.gameObject.transform.localScale = Vector3.one;
 			matchBlock.blockInfo = currentBlockInfo;
+		}
+		currentBlock.gameObject.transform.localScale = Vector3.one;
 		currentBlock.blockInfo = currentBlockInfo;
 		Debug.Log("Restore block 2 " + currentBlock.blockInfo.posInBoard + ";" + currentBlockInfo.num + " with type is " + currentBlock.blockInfo.type.ToString() );
 		_historyBlocks.Remove(currentBlock);

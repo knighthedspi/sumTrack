@@ -207,7 +207,7 @@ public class Block : MonoBehaviour {
 			background.spriteName = RETANGlE_DONE_BG;
 			foreground.spriteName = RETANGlE_DONE_FG;
 
-			numLabel.gameObject.SetActive(false);
+			numLabel.text = "";
 			break;
 		case BlockType.error:
 			background.spriteName = ERROR;
