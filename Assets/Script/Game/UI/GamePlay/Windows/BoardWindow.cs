@@ -47,5 +47,9 @@ public class BoardWindow : WindowItemBase {
 		dicBoard [AppManager.Instance.playingLevel].ResetGameAnim ();
 	}
 
+	public void OnUndoBtnClick()
+	{
+		dicBoard [AppManager.Instance.playingLevel].OnUndoAction ();
+	}
 
 }

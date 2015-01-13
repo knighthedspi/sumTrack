@@ -27,6 +27,7 @@ public class Block : MonoBehaviour {
 	public UISprite foreground;
 	public UILabel numLabel;
 
+
 	public BlockInfo blockInfo
 	{
 		set
@@ -139,6 +140,7 @@ public class Block : MonoBehaviour {
 	private void SetImageByType(BlockType type)
 	{
 		_uiwidget.depth = 1;
+		Debug.Log("set image with type : " + type.ToString());
 		switch (type)
 		{
 		case BlockType.normal:

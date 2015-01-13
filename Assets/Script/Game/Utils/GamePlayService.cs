@@ -49,6 +49,8 @@ public class GamePlayService  {
 
 	public static void loadAllMap()
 	{
+		if(mapData != null)
+			return;
 		Map data = Resources.Load("Map/map") as Map;
 		mapData = new Dictionary<int, List<BlockInfo>>(data.dataArray.Length);
 		for(int i = 0; i < data.dataArray.Length; i++)
