@@ -28,6 +28,8 @@ public class Block : MonoBehaviour {
 	public UISprite foreground;
 	public UILabel numLabel;
 
+	public BlockOriginAnim anim;
+
 	public delegate void MoveComplete();
 	public MoveComplete moveComplete;
 
@@ -62,6 +64,10 @@ public class Block : MonoBehaviour {
 
 	public void OnSelected()
 	{
+		if (anim == null)
+						return;
+		GameObject go = NGUITools.AddChild (gameObject, anim.gameObject);
+
 
 	}
 
