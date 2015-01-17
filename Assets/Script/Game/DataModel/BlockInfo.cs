@@ -19,6 +19,7 @@ public class BlockInfo  {
 	private BlockType _type;
 	public int num;
 	public Vector2 posInBoard;
+	public int id { set; get; }
 
 	public BlockType type
 	{
@@ -43,6 +44,8 @@ public class BlockInfo  {
 		this.num 		= info.num;
 		this.type 		= info.type;
 		this.posInBoard = info.posInBoard;
-
+		this.id 		= info.id;
 	}
+
+
 }

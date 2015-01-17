@@ -36,7 +36,6 @@ public class DrawLine : MonoBehaviour {
 		float angle = Mathf.DeltaAngle(Mathf.Atan2(from.y, from.x) * Mathf.Rad2Deg,
 		                               Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
 
-		Debug.Log ("angle " + angle.ToString ());
 		transform.localEulerAngles = new Vector3 (0, 0, angle);
 		transform.localPosition = source;
 		_speed = Vector3.Distance (_source, _destination) * 1f / time;
