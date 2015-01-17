@@ -97,7 +97,6 @@ public class Block : MonoBehaviour {
 
 	private void ProcessMove()
 	{
-		Debug.Log ("list move ----- " + _listMove.Count.ToString ());
 		if (_isMoving || _listMove.Count <= 0)
 						return;
 		// if block changed to done
@@ -110,7 +109,12 @@ public class Block : MonoBehaviour {
 		{
 			_isMoving = true;
 			Vector3 target = _listMove [0].transform.localPosition;
-			iTween.MoveTo (gameObject, iTween.Hash ("position", target, "time", 0.2f, "isLocal", true,"easetype","easeOutElastic", "oncomplete", "OnMoveComplete"));
+			iTween.MoveTo (gameObject, iTween.Hash (
+				"position", target,
+				"time", 0.2f, 
+				"isLocal", true,
+				"easetype","easeOutElastic",
+				"oncomplete", "OnMoveComplete"));
 		}
 		else 
 		{
@@ -130,6 +134,16 @@ public class Block : MonoBehaviour {
 		OnSelected ();
 
 		Block passedBlock 	= _listMove [0];
+
+		//------ history -------
+		History his = new History ();
+		his.origin 	= new BlockInfo (blockInfo);
+		his.after 	= new BlockInfo (passedBlock.blockInfo);
+		_gamePlay.history.Add (his);
+
+		//-----
+
+
 
 		BlockInfo newInfo 		= new BlockInfo (blockInfo);
 		newInfo.posInBoard 		= passedBlock.blockInfo.posInBoard;

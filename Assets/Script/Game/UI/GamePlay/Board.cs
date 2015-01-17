@@ -28,8 +28,8 @@ public class Board : MonoBehaviour {
 	public delegate void OnGameFinish();
 	public OnGameFinish finish;
 
-	private List<Block> _historyBlocks;
-	private List<BlockInfo> _historyBlockInfos;
+//	private List<Block> _historyBlocks;
+//	private List<BlockInfo> _historyBlockInfos;
 
 	void Awake()
 	{
@@ -38,8 +38,8 @@ public class Board : MonoBehaviour {
 		_setup = AppManager.Instance.gamePlayInfo;
 		_boardLine = GetComponent<BoardLine> ();
 		GamePlayService.loadAllMap();
-		_historyBlocks = new List<Block>();
-		_historyBlockInfos = new List<BlockInfo>();
+//		_historyBlocks = new List<Block>();
+//		_historyBlockInfos = new List<BlockInfo>();
 	}
 
 	void Update()
@@ -59,12 +59,7 @@ public class Board : MonoBehaviour {
 				Block hoverBlock = blocks.Find(x => x.gameObject == hoverObj);
 				if(hoverBlock == null)
 					return;
-				if(_historyBlocks.Find(x => x == hoverBlock) == null)
-				{
-					Debug.Log("Add block " + hoverBlock.blockInfo.num + " at pos " + hoverBlock.blockInfo.posInBoard);
-					_historyBlocks.Add(hoverBlock);
-					_historyBlockInfos.Add(hoverBlock.blockInfo);
-				}
+
 
 				if(hoverBlock.blockInfo.type == BlockType.origin)
 				{
@@ -92,16 +87,12 @@ public class Board : MonoBehaviour {
 		boardSize = new Vector2 ();
 		List<BlockInfo> blockInfoes = GamePlayService.CreateBlockList (level);
 		blocks.Clear ();
-
-		foreach(BlockInfo bl in blockInfoes)
-		{
-			Debug.Log(bl.posInBoard);
-		}
+		GamePlay.Instance.history.Clear ();
 
 
 		blockInfoes = GamePlayService.AddStartToOrigin (blockInfoes);
 
-
+		int count = 0; // set id
 
 		foreach(BlockInfo info in blockInfoes)
 		{
@@ -109,10 +100,13 @@ public class Board : MonoBehaviour {
 			boardSize.y = (boardSize.y > info.posInBoard.y) ? boardSize.y : info.posInBoard.y;
 
 			// setuo block
+			count ++;
+
 			Block block = blockPrefab.Spawn();
 			block.transform.parent = transform;
 			block.transform.localScale = Vector3.zero;
 			block.blockInfo = info;
+			block.blockInfo.id = count;
 			block.moveComplete = OnBlockMoveComplete;
 			blocks.Add(block);
 
@@ -182,11 +176,13 @@ public class Board : MonoBehaviour {
 		_isFinish = CheckWin ();
 		if (_isFinish)
 		{
+			LogMoveOnFinish();
 			CreateRetangleAnim();
 
 		}
 						
 	}
+
 
 	private bool CheckWin ()
 	{
@@ -225,22 +221,43 @@ public class Board : MonoBehaviour {
 
 	public void OnUndoAction()
 	{
-		if(_historyBlocks.Count < 1)
-			return;
-		Block currentBlock = _historyBlocks[_historyBlocks.Count - 1];
-		BlockInfo currentBlockInfo = _historyBlockInfos[_historyBlockInfos.Count - 1];
-		Debug.Log("Restore block " + currentBlock.blockInfo.posInBoard + ";" + currentBlockInfo.num + " with type is " + currentBlockInfo.type.ToString() );
-		Block matchBlock = blocks.Find(x => x.transform.localPosition == currentBlock.transform.localPosition);
-		if(matchBlock!=null)
+		List<History> history = GamePlay.Instance.history;
+		if (history.Count <= 0)
+						return;
+		History current = history [history.Count - 1];
+		history.Remove (current);
+
+		Block origin = blocks.Find (x => x.blockInfo.id == current.origin.id);
+		origin.blockInfo = current.origin;
+
+		Block after = blocks.Find (x => x.blockInfo.id == current.after.id);
+		after.blockInfo = current.after;
+		after.transform.localScale = Vector3.one;
+	}
+
+
+	// for Thang
+	private void LogMoveOnFinish()
+	{
+		Debug.Log( string.Format(" ============================ Log Move {0} ===================================",AppManager.Instance.playingLevel));
+		List<History> history = GamePlay.Instance.history;
+		List<Block> originBlocks = blocks.FindAll (x => x.blockInfo.type == BlockType.originDone);
+		foreach(Block bl in originBlocks)
 		{
-			matchBlock.gameObject.transform.localScale = Vector3.one;
-			matchBlock.blockInfo = currentBlockInfo;
+			string str = "";
+			List<History> historyOfOrigin = GamePlay.Instance.history.FindAll(x => x.origin.id == bl.blockInfo.id);
+			for(int i = 0; i < historyOfOrigin.Count; i ++ )
+			{
+				History his = historyOfOrigin[i];
+				if(i == 0)
+				{
+					str += string.Format("origin num: {0} step : ", his.origin.num);
+				}
+
+				str += string.Format(" ({0},{1}),",his.after.posInBoard.x,his.after.posInBoard.y);
+			}
+			Debug.Log(str);
 		}
-		currentBlock.gameObject.transform.localScale = Vector3.one;
-		currentBlock.blockInfo = currentBlockInfo;
-		Debug.Log("Restore block 2 " + currentBlock.blockInfo.posInBoard + ";" + currentBlockInfo.num + " with type is " + currentBlock.blockInfo.type.ToString() );
-		_historyBlocks.Remove(currentBlock);
-		_historyBlockInfos.Remove(currentBlockInfo);
 	}
 
 	
