@@ -242,22 +242,29 @@ public class Board : MonoBehaviour {
 		Debug.Log( string.Format(" ============================ Log Move {0} ===================================",AppManager.Instance.playingLevel));
 		List<History> history = GamePlay.Instance.history;
 		List<Block> originBlocks = blocks.FindAll (x => x.blockInfo.type == BlockType.originDone);
-		foreach(Block bl in originBlocks)
-		{
-			string str = "";
-			List<History> historyOfOrigin = GamePlay.Instance.history.FindAll(x => x.origin.id == bl.blockInfo.id);
-			for(int i = 0; i < historyOfOrigin.Count; i ++ )
-			{
-				History his = historyOfOrigin[i];
-				if(i == 0)
-				{
-					str += string.Format("origin num: {0} step : ", his.origin.num);
-				}
 
-				str += string.Format(" ({0},{1}),",his.after.posInBoard.x,his.after.posInBoard.y);
+		string str = "" + AppManager.Instance.playingLevel + ",\"";
+	
+		for(int i = 0; i < originBlocks.Count ; i++)
+		{
+
+			List<History> historyOfOrigin = GamePlay.Instance.history.FindAll(x => x.origin.id == originBlocks[i].blockInfo.id);
+
+			for(int j= 0; j < historyOfOrigin.Count; j++ )
+			{
+				History his = historyOfOrigin[j];
+				if(j == 0){
+					str += string.Format("{0};{1} ",his.origin.posInBoard.x, his.origin.posInBoard.y);
+					Debug.Log(string.Format("{0};{1} ",his.origin.posInBoard.x, his.origin.posInBoard.y));
+				}
+				str += string.Format("{0};{1} ",his.after.posInBoard.x,his.after.posInBoard.y);
 			}
-			Debug.Log(str);
+			if(i < historyOfOrigin.Count -1)
+				str +="\n";
 		}
+		str += "\"\n";
+		System.IO.File.AppendAllText("thang.txt", str);
+		Debug.Log(str);
 	}
 
 	
