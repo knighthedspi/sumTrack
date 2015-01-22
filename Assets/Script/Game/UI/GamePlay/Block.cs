@@ -4,16 +4,15 @@ using System.Collections.Generic;
 
 public class Block : MonoBehaviour {
 
-	const string CIRCLE_BG 		= "";
 	const string CIRCLE_NORMAL	= "lv1";
 	const string CIRCLE_TWICE	= "lv2";
 	const string CIRCLE_TRI		= "lv3";
-	const string CIRCLE_DONE	= "done";
-	const string RETANGLE_BG	= "origin";
+	const string CIRCLE_DONE	= "check1";
+	const string RETANGLE_BG	= "start";
 	const string RETANGLE_NORMAL	= "";
-	const string RETANGlE_DONE_BG 	= "done1";
+	const string RETANGlE_DONE_BG 	= "done";
 	const string RETANGlE_DONE_FG 	= "";
-	const string START				= "start";
+	const string START				= "check2";
 	const string ERROR 			= "error";
 
 	private BlockInfo _info;
@@ -25,7 +24,6 @@ public class Block : MonoBehaviour {
 
 
 	public UISprite background;
-	public UISprite foreground;
 	public UILabel numLabel;
 
 	public BlockOriginAnim anim;
@@ -139,6 +137,7 @@ public class Block : MonoBehaviour {
 		History his = new History ();
 		his.origin 	= new BlockInfo (blockInfo);
 		his.after 	= new BlockInfo (passedBlock.blockInfo);
+		his.number = _gamePlay.history.Count + 1;
 		_gamePlay.history.Add (his);
 
 		//-----
@@ -175,7 +174,9 @@ public class Block : MonoBehaviour {
 
 	public void ScaleAnimWhenFinish()
 	{
-		GamePlayService.ScaleTo (gameObject,transform.localScale, new Vector3(1.1f,1.1f,1),0.1f,"easeOutBack");
+		Vector3 scaleTo = (blockInfo.type == BlockType.originDone) ? new Vector3 (1.1f, 1.1f, 1.1f) : Vector3.one;
+
+		GamePlayService.ScaleTo (gameObject,transform.localScale, scaleTo,0.15f,"easeOutBack");
 	}
 
 
@@ -183,50 +184,46 @@ public class Block : MonoBehaviour {
 	private void SetImageByType(BlockType type)
 	{
 		_uiwidget.depth = 1;
+
+		UIWidget uwBG = background.GetComponent<UIWidget> (); 
+		uwBG.height = (int) blockInfo.sizeImage.y;
+		uwBG.width = (int) blockInfo.sizeImage.x;
+
 		numLabel.color = Color.black;
 		switch (type)
 		{
 		case BlockType.normal:
-			background.spriteName = CIRCLE_BG;
-			foreground.spriteName = CIRCLE_NORMAL;
+			background.spriteName = CIRCLE_NORMAL;
 			break;
 
 		case BlockType.normalDone:
-			background.spriteName = "";
-			foreground.spriteName = CIRCLE_DONE;
+			background.spriteName = CIRCLE_DONE;
 			transform.localScale = Vector3.zero;
 			break;
 
 		case BlockType.normalTri:
-			background.spriteName = CIRCLE_BG;
-			foreground.spriteName = CIRCLE_TRI;
+			background.spriteName = CIRCLE_TRI;
 			break;
 
 		case BlockType.normalTwice:
-			background.spriteName = CIRCLE_BG;
-			foreground.spriteName = CIRCLE_TWICE;
+			background.spriteName = CIRCLE_TWICE;
 			break;
 
 		case BlockType.origin:
 			background.spriteName = RETANGLE_BG;
-			foreground.spriteName = RETANGLE_NORMAL;
 			background.GetComponent<UIWidget>().depth = 4;
-			foreground.GetComponent<UIWidget>().depth = 5;
 			numLabel.GetComponent<UIWidget>().depth = 6;
 			numLabel.color = Color.white;
 			_uiwidget.depth = 3;
 			break;
 
 		case BlockType.start:
-			background.spriteName = "";
-			foreground.spriteName = START;
+			background.spriteName = START;
 			transform.localScale = Vector3.zero;
 			break;
 
 		case BlockType.originDone:
 			background.spriteName = RETANGlE_DONE_BG;
-			foreground.spriteName = RETANGlE_DONE_FG;
-
 			numLabel.text = "";
 			break;
 		case BlockType.error:

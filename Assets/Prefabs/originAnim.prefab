@@ -93,7 +93,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: 307c888b8aa594e9494e4b1a312a29a0, type: 2}
-  mSpriteName: origin
+  mSpriteName: start
   mFillCenter: 1
 --- !u!114 &11400002
 MonoBehaviour:

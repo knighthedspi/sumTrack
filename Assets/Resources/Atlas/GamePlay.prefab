@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: a2893011dfdb645e5aa6cb3a28cd711f, type: 2}
   mSprites:
   - name: back
-    x: 147
-    y: 228
+    x: 405
+    y: 366
     width: 146
     height: 146
     borderLeft: 0
@@ -54,11 +54,24 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: bg
+  - name: check1
+    x: 81
+    y: 57
+    width: 50
+    height: 50
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: check2
     x: 0
-    y: 1024
-    width: 683
-    height: 1024
+    y: 27
+    width: 80
+    height: 80
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -68,21 +81,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: done
-    x: 301
-    y: 749
-    width: 70
-    height: 70
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 54
-    paddingRight: 53
-    paddingTop: 50
-    paddingBottom: 57
-  - name: done1
     x: 0
-    y: 522
+    y: 108
     width: 200
     height: 200
     borderLeft: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 2
   - name: error
-    x: 201
-    y: 522
+    x: 204
+    y: 312
     width: 200
     height: 200
     borderLeft: 0
@@ -106,9 +106,35 @@ MonoBehaviour:
     paddingRight: 2
     paddingTop: 1
     paddingBottom: 2
+  - name: hint
+    x: 844
+    y: 220
+    width: 145
+    height: 145
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 1
+  - name: home
+    x: 552
+    y: 220
+    width: 145
+    height: 145
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 1
   - name: lv1
-    x: 147
-    y: 375
+    x: 846
+    y: 366
     width: 146
     height: 146
     borderLeft: 0
@@ -120,8 +146,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv2
-    x: 0
-    y: 81
+    x: 204
+    y: 165
     width: 146
     height: 146
     borderLeft: 0
@@ -133,8 +159,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv3
-    x: 0
-    y: 228
+    x: 552
+    y: 366
     width: 146
     height: 146
     borderLeft: 0
@@ -146,8 +172,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv4
-    x: 0
-    y: 375
+    x: 405
+    y: 72
     width: 146
     height: 146
     borderLeft: 0
@@ -159,8 +185,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: menu
-    x: 402
-    y: 576
+    x: 405
+    y: 219
     width: 146
     height: 146
     borderLeft: 0
@@ -171,22 +197,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: moving
-    x: 0
-    y: 723
-    width: 300
-    height: 300
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: mute
-    x: 147
-    y: 82
+    x: 552
+    y: 74
     width: 145
     height: 145
     borderLeft: 0
@@ -198,8 +211,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: only_effect
-    x: 294
-    y: 376
+    x: 698
+    y: 220
     width: 145
     height: 145
     borderLeft: 0
@@ -210,22 +223,9 @@ MonoBehaviour:
     paddingRight: 1
     paddingTop: 0
     paddingBottom: 1
-  - name: origin
-    x: 301
-    y: 820
-    width: 203
-    height: 203
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: replay 1
-    x: 505
-    y: 730
+  - name: replayall
+    x: 699
+    y: 366
     width: 146
     height: 146
     borderLeft: 0
@@ -237,23 +237,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: start
-    x: 549
-    y: 614
-    width: 108
-    height: 108
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 35
-    paddingRight: 34
-    paddingTop: 35
-    paddingBottom: 34
-  - name: statusbg
-    x: 684
-    y: 1902
-    width: 1024
-    height: 146
+    x: 0
+    y: 309
+    width: 203
+    height: 203
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -263,8 +250,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: volume
-    x: 505
-    y: 877
+    x: 204
+    y: 18
     width: 146
     height: 146
     borderLeft: 0

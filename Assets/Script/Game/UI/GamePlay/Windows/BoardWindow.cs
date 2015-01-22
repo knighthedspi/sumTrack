@@ -119,6 +119,8 @@ public class BoardWindow : WindowItemBase {
 	IEnumerator NextLevel()
 	{
 //		yield return new WaitForSeconds (2f);
+		title.color = Color.white;
+		title.fontSize = 45;
 		GamePlayService.MoveToAnimation (share.gameObject,share.localPosition , share.localPosition +
 		                                 new Vector3 (-1000, 0, 0), 0.2f);
 		
@@ -143,16 +145,18 @@ public class BoardWindow : WindowItemBase {
 		float titlePosY = _currentBoard.boardSize.y / 2 + 100;
 		clearObj.localPosition = new Vector3 (-1000,titlePosY,0);
 		// title
-		GamePlayService.MoveToAnimation (title.gameObject, title.transform.localPosition, new Vector3 (0,titlePosY,0), 0.3f);
+		GamePlayService.MoveToAnimation (title.gameObject, title.transform.localPosition, new Vector3 (0,titlePosY + 30,0), 0.3f);
 		yield return new WaitForSeconds (0.3f);
 
 		// cleaer label
-		GamePlayService.MoveToAnimation (clearObj.gameObject, clearObj.localPosition,new Vector3(80,titlePosY,0), 0.2f);
+		GamePlayService.MoveToAnimation (clearObj.gameObject, clearObj.localPosition,new Vector3(100,titlePosY +30 ,0), 0.2f);
 		yield return new WaitForSeconds (0.2f);
 
 		// title
+		title.color = new Color (135f / 255, 135f / 255, 135f / 255, 1f);
+		title.fontSize = 60;
 		GamePlayService.MoveToAnimation (title.gameObject, title.transform.localPosition, title.transform.localPosition +
-		                                 new Vector3 (-90,0,0), 0.2f);
+		                                 new Vector3 (-100,0,0), 0.2f);
 		yield return new WaitForSeconds (0.2f);
 
 
@@ -163,14 +167,17 @@ public class BoardWindow : WindowItemBase {
 		yield return new WaitForSeconds (0.2f);
 
 		// share
-		share.localPosition = new Vector3 (-1000, - titlePosY - 70,0);
+		share.localPosition = new Vector3 (-1000, - titlePosY - 60,0);
 		GamePlayService.MoveToAnimation (share.gameObject,share.localPosition , 
-		                                 new Vector3 (-150, -titlePosY -100, 0), 0.2f);
+		                                 new Vector3 (-150, -titlePosY - 60, 0), 0.2f);
 
-		next.localPosition = new Vector3 (1000, - titlePosY - 70,0);
+		next.localPosition = new Vector3 (1000, - titlePosY - 60,0);
 		GamePlayService.MoveToAnimation (next.gameObject,next.localPosition , 
-		                                 new Vector3 (150, -titlePosY -100, 0), 0.2f);
+		                                 new Vector3 (150, -titlePosY - 60, 0), 0.2f);
 		yield return new WaitForSeconds (0.2f);
+
+		// board block scale
+		StartCoroutine (_currentBoard.StartScaleAnim ());
 	}
 
 	public void OnShareClick()

@@ -177,7 +177,8 @@ public class Board : MonoBehaviour {
 		if (_isFinish)
 		{
 			LogMoveOnFinish();
-			CreateRetangleAnim();
+//			CreateRetangleAnim();
+			OnDrawLineComplete();
 
 		}
 						
@@ -204,18 +205,32 @@ public class Board : MonoBehaviour {
 
 	private void OnDrawLineComplete()
 	{
-
-		StartCoroutine (StartScaleAnim());
+		finish ();
+//		StartCoroutine (StartScaleAnim());
 	}
 
-	private IEnumerator StartScaleAnim()
+	public IEnumerator StartScaleAnim()
 	{
-		foreach(Block bl in blocks)
+		List<History> history = GamePlay.Instance.history;
+		for(int i = 0; i< history.Count; i++)
 		{
-			bl.ScaleAnimWhenFinish();
-			yield return new WaitForSeconds(0.1f);
+			History his = history[i];
+
+			// anim with normal block
+			Block bl = blocks.Find( x => x.blockInfo.ComparePos(his.origin));
+			if(bl != null) bl.ScaleAnimWhenFinish();
+			yield return new WaitForSeconds(0.2f);
+
+			// anim with origin done
+			if(his.origin.num == his.after.num)
+			{
+				Block originDone = blocks.Find( x => x.blockInfo.id == his.origin.id);
+				if(originDone != null) originDone.ScaleAnimWhenFinish();
+				yield return new WaitForSeconds(0.2f);
+			}
 		}
-		finish ();
+	
+
 
 	}
 
@@ -254,10 +269,10 @@ public class Board : MonoBehaviour {
 			{
 				History his = historyOfOrigin[j];
 				if(j == 0){
-					str += string.Format("{0};{1} ",his.origin.posInBoard.x, his.origin.posInBoard.y);
-					Debug.Log(string.Format("{0};{1} ",his.origin.posInBoard.x, his.origin.posInBoard.y));
+					str += string.Format("{0};{1};{2} ",his.origin.posInBoard.x, his.origin.posInBoard.y, his.number);
+					Debug.Log(string.Format("{0};{1};{2} ",his.origin.posInBoard.x, his.origin.posInBoard.y, his.number));
 				}
-				str += string.Format("{0};{1} ",his.after.posInBoard.x,his.after.posInBoard.y);
+				str += string.Format("{0};{1};{2} ",his.after.posInBoard.x,his.after.posInBoard.y,his.number);
 			}
 			if(i < historyOfOrigin.Count -1)
 				str +="\n";
