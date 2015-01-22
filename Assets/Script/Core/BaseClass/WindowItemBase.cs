@@ -82,16 +82,19 @@ public class WindowItemBase : MonoBehaviour {
 
 	public void ShowHeaderFooter()
 	{
+		Debug.Log ( WindowManager.Instance.headerLeft.transform.localPosition);
 		if (header != null)
 		{
 			header.SetActive(true);
-			GamePlayService.MoveToAnimation (header, Config.HEADER_OUT, new Vector3(0,WindowManager.Instance.headerLeft.transform.localPosition.y,0), 0.5f);
+			GamePlayService.MoveToAnimation (header, Config.HEADER_OUT, 
+			                                 new Vector3(0,WindowManager.Instance.headerLeft.transform.localPosition.y,0), 0.5f);
 		}
 			
 		if(footer != null)
 		{
 			footer.SetActive(true);
-			GamePlayService.MoveToAnimation (footer, Config.FOOTER_OUT, new Vector3(0,WindowManager.Instance.footerLeft.transform.localPosition.y,0), 0.5f);
+			GamePlayService.MoveToAnimation (footer, Config.FOOTER_OUT, 
+			                                 new Vector3(0,WindowManager.Instance.footerLeft.transform.localPosition.y,0), 0.5f);
 		}
 		ShowTitle ();
 
