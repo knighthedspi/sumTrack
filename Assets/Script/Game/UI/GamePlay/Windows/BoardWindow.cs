@@ -7,6 +7,7 @@ public class BoardWindow : WindowItemBase {
 	private Board _currentBoard;
 	private int _nextLevel;
 
+	public GameObject SoundSettingBtn;
 	public GameObject boardPrefab;
 	public Transform homeBtn;
 	public Transform soundBtn;
@@ -20,11 +21,13 @@ public class BoardWindow : WindowItemBase {
 	private bool _isProcessing = false;
 
 	private string SE_CLEAR = "Jingle_Clear";
+	private string SE_Button = "SE_Back";
 
 	protected override void Awake ()
 	{
 		base.Awake ();
 		dicBoard = new Dictionary<int,Board > ();
+		ChangeSpriteSoundBtn();
 	}
 
 	public override void PreLoad ()
@@ -98,16 +101,22 @@ public class BoardWindow : WindowItemBase {
 
 	public void OnOptionBtnClick()
 	{
+		if(SoundManager.isSound)
+			SoundManager.Instance.PlaySE(SE_Button);
 		WindowManager.Instance.ChangeWindow (WindowName.OptionWindow, TransitionType.BottomToTop);
 	}
 
 	public void OnResetBtnClick()
 	{
+		if(SoundManager.isSound)
+			SoundManager.Instance.PlaySE(SE_Button);
 		dicBoard [AppManager.Instance.playingLevel].ResetGameAnim ();
 	}
 
 	public void OnUndoBtnClick()
 	{
+		if(SoundManager.isSound)
+			SoundManager.Instance.PlaySE(SE_Button);
 		dicBoard [AppManager.Instance.playingLevel].OnUndoAction ();
 	}
 
@@ -186,11 +195,14 @@ public class BoardWindow : WindowItemBase {
 
 	public void OnShareClick()
 	{
-
+		if(SoundManager.isSound)
+			SoundManager.Instance.PlaySE(SE_Button);
 	}
 
 	public void OnNextClick()
 	{
+		if(SoundManager.isSound)
+			SoundManager.Instance.PlaySE(SE_Button);
 		if (_isProcessing)
 						return;
 		_isProcessing = true;
@@ -199,7 +211,22 @@ public class BoardWindow : WindowItemBase {
 
 	public void OnSoundClick()
 	{
+		if(SoundManager.isSound)
+			SoundManager.Instance.PlaySE(SE_Button);
 		SoundManager.Instance.setIsSound(!SoundManager.isSound);
+		ChangeSpriteSoundBtn();
 	}
 
+	public void ChangeSpriteSoundBtn()
+	{
+		UIButton btn = SoundSettingBtn.GetComponentInChildren<UIButton>();
+		if (SoundManager.isSound)
+		{
+			btn.normalSprite = "volume";
+		}
+		else
+		{
+			btn.normalSprite = "mute";
+		}
+	}
 }

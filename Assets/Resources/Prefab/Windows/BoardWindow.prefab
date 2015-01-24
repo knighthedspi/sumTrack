@@ -868,7 +868,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 11400010}
+    mMethodName: OnSoundClick
+    mParameters: []
+    oneShot: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -995,6 +999,7 @@ MonoBehaviour:
   header: {fileID: 100010}
   footer: {fileID: 100008}
   title: {fileID: 11400008}
+  SoundSettingBtn: {fileID: 100006}
   boardPrefab: {fileID: 100000, guid: c143a7677223f4310952833bb3f4447c, type: 2}
   homeBtn: {fileID: 400030}
   soundBtn: {fileID: 400006}

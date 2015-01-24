@@ -8,7 +8,7 @@ public class SoundManager  : Singleton<SoundManager> {
 	private SoundVolume volume = new SoundVolume();
 
 	public static bool isSound = false;
-	public string currentBgm = "";
+	public string currentBgm = "BGM_InGame";
 	public int numberOfConcurrentSE = 30;
 	public int numberOfConcurrentENV = 3;
 
