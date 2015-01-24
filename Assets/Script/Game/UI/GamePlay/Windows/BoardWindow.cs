@@ -197,5 +197,9 @@ public class BoardWindow : WindowItemBase {
 		StartCoroutine (NextLevel());
 	}
 
+	public void OnSoundClick()
+	{
+		SoundManager.Instance.setIsSound(!SoundManager.isSound);
+	}
 
 }

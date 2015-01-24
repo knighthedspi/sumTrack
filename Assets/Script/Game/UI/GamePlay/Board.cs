@@ -254,6 +254,7 @@ public class Board : MonoBehaviour {
 	// for Thang
 	private void LogMoveOnFinish()
 	{
+#if UNITY_EDITOR
 		Debug.Log( string.Format(" ============================ Log Move {0} ===================================",AppManager.Instance.playingLevel));
 		List<History> history = GamePlay.Instance.history;
 		List<Block> originBlocks = blocks.FindAll (x => x.blockInfo.type == BlockType.originDone);
@@ -280,6 +281,7 @@ public class Board : MonoBehaviour {
 		str += "\"\n";
 		System.IO.File.AppendAllText("thang.txt", str);
 		Debug.Log(str);
+#endif
 	}
 
 	

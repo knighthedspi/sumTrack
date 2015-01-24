@@ -8,6 +8,7 @@ public class SoundManager  : Singleton<SoundManager> {
 	private SoundVolume volume = new SoundVolume();
 
 	public static bool isSound = false;
+	public string currentBgm = "";
 	public int numberOfConcurrentSE = 30;
 	public int numberOfConcurrentENV = 3;
 
@@ -56,7 +57,7 @@ public class SoundManager  : Singleton<SoundManager> {
 			ENV_list.Add(ENV[i].name);
 		}
 	}
-
+	
 	public bool ContainsBGM(string name) {
 		int index = BGM_list.IndexOf(name);
 		if (index >= 0)
@@ -89,6 +90,7 @@ public class SoundManager  : Singleton<SoundManager> {
 			return;
 		if(BGMsource.clip == clip)
 			return;
+		currentBgm = clip.name;
 		BGMsource.Stop();
 		BGMsource.clip = clip;
 		BGMsource.Play();
@@ -290,6 +292,20 @@ public class SoundManager  : Singleton<SoundManager> {
 		return loader;
 	}
 
+
+	public void setIsSound(bool _isSound = false)
+	{
+		isSound = _isSound;
+		PlayerPrefs.SetInt("isSound",SoundManager.isSound ? 1 : 0 );
+		if (SoundManager.isSound)
+		{
+			SoundManager.Instance.PlayBGM(currentBgm);
+		}
+		else
+        {
+            SoundManager.Instance.StopBGM();
+        }
+	}
 }
 
 [Serializable]

@@ -29,7 +29,8 @@ public class GamePlay : View {
 
 	protected override void OnOpen (params object[] parameters)
 	{
-		SoundManager.Instance.PlayBGM(BGM);
+		if(SoundManager.isSound)
+			SoundManager.Instance.PlayBGM(BGM);
 	}
 
 }
