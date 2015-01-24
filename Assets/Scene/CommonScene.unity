@@ -115,8 +115,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfConcurrentSE: 30
   numberOfConcurrentENV: 3
-  BGM: []
-  SE: []
+  BGM:
+  - {fileID: 8300000, guid: 73dc9cf5bf7054b85b362e946369557e, type: 3}
+  - {fileID: 8300000, guid: c5274f49e6e9b4e5a9474fe203e0728b, type: 3}
+  - {fileID: 8300000, guid: d4a27379c885147a1902ead1e98af660, type: 3}
+  SE:
+  - {fileID: 8300000, guid: 23a5e269b11e44ffb860b51339d7b140, type: 3}
+  - {fileID: 8300000, guid: 15b9dd649c9ab4480998e34bc5c52f8a, type: 3}
+  - {fileID: 8300000, guid: df55366475cd1484393a39162ccdf455, type: 3}
+  - {fileID: 8300000, guid: 69f0cb1bb04ac4c5ea22152a3b93ec43, type: 3}
+  - {fileID: 8300000, guid: fa6bcf32737c54c4ba846465d6749b4a, type: 3}
+  - {fileID: 8300000, guid: 309eb668ed45d47d58ef0c9384c9cfda, type: 3}
   ENV: []
   BGM_list: []
   SE_list: []

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GamePlay : MonoBehaviour {
+public class GamePlay : View {
 
 	public static GamePlay Instance;
 
@@ -12,6 +12,8 @@ public class GamePlay : MonoBehaviour {
 	public Transform headerRight;
 
 	public List<History> history;
+
+	private string BGM = "BGM_InGame";
 
 	void Awake()
 	{
@@ -25,6 +27,9 @@ public class GamePlay : MonoBehaviour {
 		WindowManager.Instance.ChangeWindow (WindowName.BoardWindow,TransitionType.TopToBottom);
 	}
 
-
+	protected override void OnOpen (params object[] parameters)
+	{
+		SoundManager.Instance.PlayBGM(BGM);
+	}
 
 }

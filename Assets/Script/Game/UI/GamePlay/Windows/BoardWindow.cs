@@ -19,6 +19,7 @@ public class BoardWindow : WindowItemBase {
 
 	private bool _isProcessing = false;
 
+	private string SE_CLEAR = "Jingle_Clear";
 
 	protected override void Awake ()
 	{
@@ -109,11 +110,14 @@ public class BoardWindow : WindowItemBase {
 	{
 		dicBoard [AppManager.Instance.playingLevel].OnUndoAction ();
 	}
+
+	//#TODO add sound
 	public void OnGameFinish()
 	{
 		HideHeaderFooter ();
 		StartCoroutine (TitleAnimWhenFinish());
 //		StartCoroutine (NextLevel());
+		SoundManager.Instance.PlaySE(SE_CLEAR);
 	}
 
 	IEnumerator NextLevel()

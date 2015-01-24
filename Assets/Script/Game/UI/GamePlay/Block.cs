@@ -31,6 +31,8 @@ public class Block : MonoBehaviour {
 	public delegate void MoveComplete();
 	public MoveComplete moveComplete;
 
+	private string SE_MC = "SE_Enter";
+
 	public BlockInfo blockInfo
 	{
 		set
@@ -92,6 +94,7 @@ public class Block : MonoBehaviour {
 		ProcessMove ();
 
 	}
+	
 
 	private void ProcessMove()
 	{
@@ -126,6 +129,8 @@ public class Block : MonoBehaviour {
 	{
 		Destroy (gameObject);
 	}
+
+	//#TODO add sound
 
 	private void OnMoveComplete()
 	{
@@ -162,6 +167,8 @@ public class Block : MonoBehaviour {
 		_listMove.RemoveAt (0);
 		moveComplete ();
 		StartCoroutine (AfterMove());
+
+		SoundManager.Instance.PlaySE(SE_MC);
 	}
 
 	IEnumerator AfterMove()
