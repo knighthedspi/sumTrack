@@ -114,13 +114,17 @@ public class WindowItemBase : MonoBehaviour {
 		if (title == null)
 						return;
 		title.gameObject.SetActive (true);
-		GamePlayService.MoveToAnimation(title.gameObject,new Vector3(0,550,0),new Vector3(0,WindowManager.Instance.headerLeft.transform.localPosition.y,0),0.4f);
+		GamePlayService.MoveToAnimation(title.gameObject,
+		                                new Vector3(0,550,0),
+		                                new Vector3(0,WindowManager.Instance.headerLeft.transform.localPosition.y,0),0.4f);
 	}
 
 	protected void HideTitle()
 	{
 		if (title == null)
 						return;
-		GamePlayService.MoveToAnimation(title.gameObject,new Vector3(0,WindowManager.Instance.headerLeft.transform.localPosition.y,0),new Vector3(0,550,0),0.4f);
+		GamePlayService.MoveToAnimation(title.gameObject,
+		                                new Vector3(0,WindowManager.Instance.headerLeft.transform.localPosition.y,0),
+		                                new Vector3(0,550,0),0.4f);
 	}
 }

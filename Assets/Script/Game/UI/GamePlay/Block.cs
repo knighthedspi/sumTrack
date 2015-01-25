@@ -235,8 +235,8 @@ public class Block : MonoBehaviour {
 			break;
 		case BlockType.error:
 			background.spriteName = ERROR;
-//			numLabel.text = "";
 			break;
+
 		}
 
 	}
