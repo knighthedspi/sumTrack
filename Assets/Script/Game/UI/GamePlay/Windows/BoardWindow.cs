@@ -209,6 +209,12 @@ public class BoardWindow : WindowItemBase {
 		StartCoroutine (NextLevel());
 	}
 
+	public void OnHintClick()
+	{
+		Debug.Log("hint click");
+		DialogHint.Create();
+	}
+
 	public void OnSoundClick()
 	{
 		if(SoundManager.isSound)
