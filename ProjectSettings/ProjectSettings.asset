@@ -154,7 +154,11 @@ PlayerSettings:
   psp2PackagedResourcesPath: 
   flashStrippingLevel: 2
   spritePackerPolicy: 
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: SOOMLA_FACEBOOK
+    2: SOOMLA_FACEBOOK
+    4: SOOMLA_FACEBOOK
+    7: SOOMLA_FACEBOOK
   metroPackageName: sumTrack
   metroPackageLogo: 
   metroPackageLogo140: 
