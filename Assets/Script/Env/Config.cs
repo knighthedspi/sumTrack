@@ -81,4 +81,9 @@ public static class Config
 	//present of game
 	public const int 					BELLY_FB_INVITE					= 1000 ;// when invite fb, get 1000belly
 	public const int					BELLY_FB_SHARE					= 300; // when share fb,get 300 belly
+
+	// key for player prefs
+	public const string					CURRENT_STATE					= "CurrentState"; 
+	public const string					CURRENT_LEVEL					= "CurrentLevel"; 
+	public const string					CURRENT_HISTORY					= "CurrentHistory"; 
 }

@@ -103,6 +103,9 @@ public class GamePlayService  {
 
 	public static List<BlockInfo> CreateBlockList(int level)
 	{
+		List<BlockInfo> currentState = restoreState();
+		if(currentState != null)
+			return currentState;
 		List<BlockInfo> infos = new List<BlockInfo> ();
 		List<BlockInfo> data = mapData [level];
 
@@ -183,6 +186,119 @@ public class GamePlayService  {
 		iTween.ScaleTo (go,iTween.Hash("scale",scale,"isLocal",true,"time",time,"easetype",easeType));
 	}
 
+	// save state
+	public static void saveState(bool isFinish, List<Block> blocks)
+	{
+		int currentLevel = AppManager.Instance.playingLevel;
+		if(isFinish){
+			PlayerPrefs.SetString(Config.CURRENT_STATE, "");
+			PlayerPrefs.SetInt(Config.CURRENT_LEVEL, currentLevel + 1);
+		}else{
+			string data = "";
+			foreach(Block block in blocks){
+				BlockInfo blockInfo = block.blockInfo;
+//				if(blockInfo.type == BlockType.normalDone)
+//					continue;
+				Vector2 posInBoard = blockInfo.posInBoard;
+				int num = blockInfo.num;
+				int type = (int) blockInfo.type;
+				int id = blockInfo.id;
+				string dataItem = posInBoard.x + ";" + posInBoard.y + ";" + num + ";" + type + ";" + id + "\n";
+				data += dataItem;
+				Debug.Log (dataItem);
+			}
+			Debug.Log(data);
+			PlayerPrefs.SetString(Config.CURRENT_STATE, data);
+			PlayerPrefs.SetInt(Config.CURRENT_LEVEL, currentLevel);
+		}	
+	}
 
+	public static List<BlockInfo> restoreState()
+	{
+		String currentState = PlayerPrefs.GetString(Config.CURRENT_STATE);
+		if(currentState.Equals("") )
+			return null;
+		else{
+			Debug.Log(currentState);
+			string [] blockInfoStrs = currentState.Split("\n"[0]);
+			List<BlockInfo> infos = new List<BlockInfo> ();
+			foreach(string blockInfoStr in blockInfoStrs)
+			{
+				if(blockInfoStr.Trim().Equals(""))
+					break;
+				infos.Add (getBlockInfo(blockInfoStr));
+			}
+			return infos;
+		}
+	}
+
+	// save history
+	public static void saveHistory()
+	{
+		List<History> historyList = GamePlay.Instance.history;
+		String data = "";
+		if(historyList.Count > 0)
+		{
+			foreach(History history in historyList)
+			{
+				BlockInfo origin = history.origin;
+				BlockInfo after = history.after;
+				int number = history.number;
+				string originInfo = origin.posInBoard.x + ";" + origin.posInBoard.y + ";" + origin.num + ";" + (int) origin.type + ";" + origin.id;
+				string afterInfo = after.posInBoard.x + ";" + after.posInBoard.y + ";" + after.num + ";" + (int) after.type + ";" + after.id;
+				string dataItem = originInfo + "|" + afterInfo + "|" + number.ToString() + "\n";
+				data += dataItem;
+				Debug.Log(dataItem);
+			}
+		}
+		Debug.Log(data);
+		PlayerPrefs.SetString(Config.CURRENT_HISTORY, data);
+	}
+
+	public static List<History> restoreHistory()
+	{
+		String currentHistory = PlayerPrefs.GetString(Config.CURRENT_HISTORY);
+		if(currentHistory.Equals(""))
+			return null;
+		else{
+			Debug.Log(currentHistory);
+			string [] blockInfoStrs = currentHistory.Split("\n"[0]);
+			List<History> historyInfos = new List<History> ();
+			foreach(string blockInfoStr in blockInfoStrs)
+			{
+				Debug.Log(blockInfoStr);
+				if(blockInfoStr.Trim().Equals(""))
+					break;
+				string [] dataStr = blockInfoStr.Split("|"[0]);
+				BlockInfo originInfo = getBlockInfo(dataStr[0]);
+				BlockInfo afterInfo = getBlockInfo(dataStr[1]);
+				int num = 0;
+				Int32.TryParse(dataStr[2], out num);
+				History history = new History();
+				history.origin = originInfo;
+				history.after = afterInfo;
+				history.number = num;
+				historyInfos.Add(history);
+			}
+			return historyInfos;
+		}
+	}
+
+	private static BlockInfo getBlockInfo(string blockInfoStr)
+	{
+		string [] dataStr = blockInfoStr.Split(";"[0]);
+		int posX , posY, num, type, id;
+		Int32.TryParse(dataStr[0], out posX);
+		Int32.TryParse(dataStr[1], out posY);
+		Int32.TryParse(dataStr[2], out num);
+		Int32.TryParse(dataStr[3], out type);
+		Int32.TryParse(dataStr[4], out id);
+		BlockInfo blockInfo = new BlockInfo();
+		blockInfo.posInBoard = new Vector2(posX, posY);
+		blockInfo.num = num;
+		blockInfo.type = (BlockType) type;
+		blockInfo.id = id;
+		return blockInfo;
+	}
 }
  
