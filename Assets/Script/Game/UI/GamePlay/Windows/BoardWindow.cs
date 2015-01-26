@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+using Soomla;
+using Soomla.Profile;
+
 public class BoardWindow : WindowItemBase {
 	private Dictionary<int, Board> dicBoard ;
 	private Board _currentBoard;
@@ -29,6 +32,7 @@ public class BoardWindow : WindowItemBase {
 		dicBoard = new Dictionary<int,Board > ();
 		ChangeSpriteSoundBtn();
 	}
+	
 
 	public override void PreLoad ()
 	{
@@ -193,10 +197,22 @@ public class BoardWindow : WindowItemBase {
 		StartCoroutine (_currentBoard.StartScaleAnim ());
 	}
 
+
 	public void OnShareClick()
 	{
 		if(SoundManager.isSound)
 			SoundManager.Instance.PlaySE(SE_Button);
+	
+		if(!SoomlaProfile.IsLoggedIn(Provider.FACEBOOK))
+			SoomlaProfile.Login(Provider.FACEBOOK, null);
+		if(SoomlaProfile.IsLoggedIn(Provider.FACEBOOK))
+		{
+			SoomlaProfile.UpdateStory(Provider.FACEBOOK, 
+			                          "Message", "Name", 
+			                          "Caption", "Description", 
+			                          "http://gametech.vn", "");
+//			SoomlaProfile.UpdateStatus(Provider.FACEBOOK, "I love this game !", null);
+		}
 	}
 
 	public void OnNextClick()
