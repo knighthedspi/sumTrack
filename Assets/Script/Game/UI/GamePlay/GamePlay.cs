@@ -24,7 +24,7 @@ public class GamePlay : View {
 	void Start()
 	{
 		Debug.Log("start------------------");
-		WindowManager.Instance.ChangeWindow (WindowName.BoardWindow,TransitionType.TopToBottom);
+		WindowManager.Instance.ChangeWindow (WindowName.OptionWindow,TransitionType.TopToBottom);
 	}
 
 	protected override void OnOpen (params object[] parameters)

@@ -12,6 +12,9 @@ public enum BlockType
 	originDone,
 	start,
 	error,
+
+	level,
+	levelDone,
 }
 
 
