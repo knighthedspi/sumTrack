@@ -5,9 +5,9 @@ public class UIManager : Singleton<UIManager> {
 
 	public GameObject disableObj;
 	private bool _isDisable;
-	private UIRoot _uiRoot;
 	private DisableUI _disableUI;
 
+	public UIRoot uiRoot{ private set; get; }
 	public bool disable
 	{
 		get
@@ -19,10 +19,11 @@ public class UIManager : Singleton<UIManager> {
 			if( _isDisable == value)
 				return;
 			_isDisable = value;
+			if(uiRoot == null)
+				CheckUIRoot();
 			if(_isDisable)
 			{
-				CheckUIRoot();
-				GameObject go 	= NGUITools.AddChild(_uiRoot.gameObject,disableObj);
+				GameObject go 	= NGUITools.AddChild(uiRoot.gameObject,disableObj);
 				_disableUI 		= go.GetComponent<DisableUI>();
 				NGUITools.BringForward(go);
 				_disableUI.Show();
@@ -46,11 +47,11 @@ public class UIManager : Singleton<UIManager> {
 
 	private void CheckUIRoot()
 	{
-		if (_uiRoot != null)
+		if (uiRoot != null)
 						return;
-		GameObject obj = GameObject.Find ("Global");
+		GameObject obj = GameObject.Find ("GamePlay");
 		if (obj != null)
-			_uiRoot = obj.GetComponent<UIRoot> ();
+			uiRoot = obj.GetComponent<UIRoot> ();
 		else
 			Debug.LogError("Has no uiroot global");
 
