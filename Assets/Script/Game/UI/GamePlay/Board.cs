@@ -89,6 +89,10 @@ public class Board : MonoBehaviour {
 		blocks.Clear ();
 		GamePlay.Instance.history.Clear ();
 
+		List<History> currentHistory = GamePlayService.restoreHistory();
+		if(currentHistory != null)
+			GamePlay.Instance.history = currentHistory;
+
 
 		blockInfoes = GamePlayService.AddStartToOrigin (blockInfoes);
 
@@ -167,21 +171,25 @@ public class Board : MonoBehaviour {
 			StartCoroutine(StartGameAnim());
 		}
 
+
+
 	}
 
 	private void OnBlockMoveComplete()
 	{
 		if (_isFinish)
-						return;
+			return;
 		_isFinish = CheckWin ();
 		if (_isFinish)
 		{
 			LogMoveOnFinish();
 //			CreateRetangleAnim();
+			GamePlay.Instance.history.Clear();
+			GamePlayService.saveState(true, blocks);
 			OnDrawLineComplete();
-
-		}
-						
+		}else
+			GamePlayService.saveState(false, blocks);
+		GamePlayService.saveHistory();
 	}
 
 
@@ -238,7 +246,7 @@ public class Board : MonoBehaviour {
 	{
 		List<History> history = GamePlay.Instance.history;
 		if (history.Count <= 0)
-						return;
+			return;
 		History current = history [history.Count - 1];
 		history.Remove (current);
 
@@ -248,6 +256,8 @@ public class Board : MonoBehaviour {
 		Block after = blocks.Find (x => x.blockInfo.id == current.after.id);
 		after.blockInfo = current.after;
 		after.transform.localScale = Vector3.one;
+
+		Debug.Log("history : " + current.origin.posInBoard);
 	}
 
 
@@ -284,6 +294,6 @@ public class Board : MonoBehaviour {
 #endif
 	}
 
-	
+
 
 }
