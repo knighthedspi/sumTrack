@@ -184,7 +184,7 @@ public class Board : MonoBehaviour {
 		{
 			LogMoveOnFinish();
 //			CreateRetangleAnim();
-			GamePlay.Instance.history.Clear();
+//			GamePlay.Instance.history.Clear();
 			GamePlayService.saveState(true, blocks);
 			OnDrawLineComplete();
 		}else
@@ -219,7 +219,11 @@ public class Board : MonoBehaviour {
 
 	public IEnumerator StartScaleAnim()
 	{
+
+
 		List<History> history = GamePlay.Instance.history;
+
+		Debug.Log("start scale anim ------- " + history.Count.ToString());
 		for(int i = 0; i< history.Count; i++)
 		{
 			History his = history[i];
