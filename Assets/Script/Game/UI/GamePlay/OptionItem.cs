@@ -7,7 +7,19 @@ public class OptionItem : MonoBehaviour {
 	public string optionName	{ set; get; }
 	public GameObject blockPrefabs;
 	public int level { set; get;}
+
+	public UISprite background;
+
+	[HideInInspector]
 	public List<LevelBlock> blocks ;
+
+	public Color bgColor
+	{
+		set
+		{
+			background.color = value;
+		}
+	}
 
 	private int levelCount = 17;
 
