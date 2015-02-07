@@ -42,7 +42,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: a2893011dfdb645e5aa6cb3a28cd711f, type: 2}
   mSprites:
   - name: back
-    x: 1315
+    x: 1609
     y: 3642
     width: 146
     height: 146
@@ -120,7 +120,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 2
   - name: hint
-    x: 1606
+    x: 1168
     y: 3349
     width: 145
     height: 145
@@ -133,7 +133,20 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: home
-    x: 1752
+    x: 1898
+    y: 3349
+    width: 145
+    height: 145
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 1
+  - name: home 1
+    x: 1606
     y: 3349
     width: 145
     height: 145
@@ -159,8 +172,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: level
-    x: 1609
-    y: 3495
+    x: 1315
+    y: 3642
     width: 146
     height: 146
     borderLeft: 0
@@ -172,7 +185,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: level_checked
-    x: 1314
+    x: 1460
     y: 3349
     width: 145
     height: 145
@@ -198,7 +211,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv1
-    x: 1168
+    x: 1462
     y: 3642
     width: 146
     height: 146
@@ -211,20 +224,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv2
-    x: 1756
-    y: 3642
-    width: 146
-    height: 146
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: lv3
-    x: 1315
+    x: 1609
     y: 3495
     width: 146
     height: 146
@@ -236,7 +236,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: lv4
+  - name: lv3
     x: 1462
     y: 3495
     width: 146
@@ -249,8 +249,21 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: menu
+  - name: lv4
     x: 1168
+    y: 3642
+    width: 146
+    height: 146
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: menu
+    x: 1315
     y: 3495
     width: 146
     height: 146
@@ -263,8 +276,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mute
-    x: 1168
-    y: 3349
+    x: 1902
+    y: 3496
     width: 145
     height: 145
     borderLeft: 0
@@ -276,7 +289,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: only_effect
-    x: 1460
+    x: 1752
     y: 3349
     width: 145
     height: 145
@@ -289,8 +302,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: other
-    x: 1756
-    y: 3496
+    x: 1314
+    y: 3349
     width: 145
     height: 145
     borderLeft: 0
@@ -315,8 +328,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: replayall
-    x: 1462
-    y: 3642
+    x: 1168
+    y: 3495
     width: 146
     height: 146
     borderLeft: 0
@@ -328,7 +341,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: review
-    x: 1902
+    x: 1756
     y: 3496
     width: 145
     height: 145
@@ -367,7 +380,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: volume
-    x: 1609
+    x: 1756
     y: 3642
     width: 146
     height: 146
