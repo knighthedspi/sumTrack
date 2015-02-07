@@ -101,7 +101,7 @@ public class DialogManager : Singleton<DialogManager> {
             _dialogWindow.transform.localScale = new Vector3(3f, 3f, 1f);
 			_dialogWindow.name = "DialogWindow";
 		}
-		UIManager.Instance.disable = false;
+//		UIManager.Instance.disable = false;
 		return _dialogWindow;
 	}
 

@@ -13,6 +13,11 @@ public class DialogHint : DialogBase {
 	
 	}
 
+	public void OnBackgroundClick()
+	{
+		DialogManager.Instance.Complete ();
+	}
+
 	public static void Create()
 	{
 		DialogData dialogData = new DialogData ();
