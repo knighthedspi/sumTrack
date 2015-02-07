@@ -84,7 +84,7 @@ public class iTweenEventDataEditor : Editor {
 		}
 			
 		if(!File.Exists(Application.dataPath + "/Gizmos/iTweenIcon.tif")) {
-			FileUtil.CopyFileOrDirectory(Application.dataPath + "/iTweenEditor/Gizmos/iTweenIcon.tif", Application.dataPath + "/Gizmos/iTweenIcon.tif");
+//			FileUtil.CopyFileOrDirectory(Application.dataPath + "/iTweenEditor/Gizmos/iTweenIcon.tif", Application.dataPath + "/Gizmos/iTweenIcon.tif");
 		}
 	}
 	

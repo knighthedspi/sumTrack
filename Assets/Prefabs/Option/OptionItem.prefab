@@ -118,8 +118,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 5e50eccd9339548fb9474a3ab91a5573, type: 2}
-  mSpriteName: link1
+  mAtlas: {fileID: 11400000, guid: 307c888b8aa594e9494e4b1a312a29a0, type: 2}
+  mSpriteName: link
   mFillCenter: 1
 --- !u!114 &11400002
 MonoBehaviour:
@@ -133,6 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockPrefabs: {fileID: 100004, guid: d58c9b0954a14412489ca753010daeee, type: 2}
+  background: {fileID: 11400000}
+  blocks: []
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

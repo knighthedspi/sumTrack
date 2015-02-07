@@ -6,17 +6,22 @@ public class OptionWindow : WindowItemBase {
 
 
 	private int _index = 0;
-	private UIScrollView _uigrid;
+
 	private List<OptionItem> _listItem;
 
 	public GameObject optionItemPreab;
 
-	public int headerHeight 	= 200;
 
-	public GameObject scrollFooter;
+	public GameObject menuBar;
+	public GameObject grid;
 
+	const int BLOCK_PER_PAGE = 17;
 	private int currentLevel = 1;
+	private int _currentPage = 0;
+	private List<Vector2> _touchList;
 	private List<LevelBlock> _listBlock;
+	private bool _isMoving = false;
+	private Color[] colors = new Color[] {Color.red, Color.blue, Color.yellow,Color.black, Color.gray};
 //	public UILabel title;
 	
 
@@ -25,16 +30,17 @@ public class OptionWindow : WindowItemBase {
 	protected override void Awake ()
 	{
 		base.Awake ();
-		_uigrid = GetComponentInChildren<UIScrollView>();
 //		_uigrid.cellWidth = optionWidth;
 		_listItem = new List<OptionItem>();
 		currentLevel = AppManager.Instance.playingLevel;
 		_listBlock = new List<LevelBlock> ();
+		_currentPage = currentLevel / BLOCK_PER_PAGE;
+		_touchList = new List<Vector2> ();
+
 	}
 
 	void Start()
 	{
-		originPos = _uigrid.transform.localPosition;
 	}
 
 	public override void PreLoad ()
@@ -89,18 +95,22 @@ public class OptionWindow : WindowItemBase {
 
 	private void CreateOption()
 	{
-		int itemNum = AppManager.Instance.maxLevel / 17 + 1;
+		int itemNum = AppManager.Instance.maxLevel / BLOCK_PER_PAGE + 1;
 		for(int i = 0; i < itemNum; i ++)
 		{
-			GameObject go = NGUITools.AddChild(_uigrid.gameObject, optionItemPreab);
+			GameObject go = NGUITools.AddChild(grid, optionItemPreab);
 			OptionItem ot = go.GetComponent<OptionItem>();
 			_listItem.Add(ot);
 			ot.Init(i);
-			ot.transform.localPosition = new Vector3(0,- 1024*i - headerHeight,0);
+			ot.transform.localPosition = new Vector3(0,- 1024*i ,0);
 			ot.optionName = "Option" + i.ToString();
 			_listBlock.AddRange(ot.blocks);
+
+			// item color
+			Color cl = (i < colors.Length) ? colors[i] : colors[colors.Length -1];
+			ot.bgColor = cl;
 		}
-		scrollFooter.transform.localPosition = new Vector3 (0, -1024 * (_listItem.Count - 0.5f) - headerHeight -50, 0);
+//		scrollFooter.transform.localPosition = new Vector3 (0, -1024 * (_listItem.Count - 0.5f) - headerHeight -50, 0);
 	}
 
 	public void OnMoveFinish()
@@ -112,6 +122,80 @@ public class OptionWindow : WindowItemBase {
 		}
 			
 
+	}
+
+	public void OnMenuBtnClick()
+	{
+		Debug.Log("On menu button click");
+		iTweenEvent.GetEvent (menuBar, "Show").Play ();
+	}
+
+	public void OnMoveTop()
+	{
+		if (_isMoving)
+						return;
+		_currentPage = (_currentPage <= 0) ? 0 : _currentPage - 1;
+		MoveToPage (_currentPage);
+	}
+
+	public void OnMoveDown()
+	{
+		if (_isMoving)
+						return;
+		_currentPage = (_currentPage >= (_listItem.Count - 1)) ? _listItem.Count - 1 : _currentPage + 1;
+		MoveToPage (_currentPage);
+	}
+
+	private void MoveToPage(int page)
+	{
+		if (page < 0 || page >= _listItem.Count)
+						return;
+		_isMoving = true;
+		iTweenEvent.GetEvent (menuBar, "Hide").Play ();
+		Vector3 newPos = new Vector3 (0, page * 1024, 0);
+		iTween.MoveTo (grid,iTween.Hash(
+			"position",newPos,
+			"isLocal",true,
+			"time",0.7f,
+			"easetype",iTween.EaseType.linear,
+			"oncomplete","moveComplete",
+			"oncompletetarget",this.gameObject));
+	}
+
+	private void moveComplete()
+	{
+		_isMoving = false;
+	}
+
+	// Touch event
+
+	void Update()
+	{
+		if(Input.GetMouseButton(0))
+		{
+			Vector2 touch = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
+			Debug.Log(touch);
+			_touchList.Add(touch);
+			if(_touchList.Count >= 3)
+			{
+				float angle = Vector2.Angle(Vector2.up,_touchList[2] - _touchList[0]);
+
+				if(angle >= 135)
+				{
+					OnMoveTop();
+				}
+				else if(angle <= 45)
+				{
+
+					OnMoveDown();
+				}
+				_touchList.Clear();
+			}
+		}
+		else
+		{
+			_touchList.Clear();
+		}
 	}
 
 
