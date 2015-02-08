@@ -125,13 +125,13 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.4000001
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
+  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mFont: {fileID: 0}
   mText: 40
   mFontSize: 50
   mFontStyle: 0
   mAlignment: 0
-  mEncoding: 1
+  mEncoding: 0
   mMaxLineCount: 0
   mEffectStyle: 0
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}

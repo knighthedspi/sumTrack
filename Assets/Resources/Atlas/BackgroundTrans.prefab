@@ -44,7 +44,7 @@ MonoBehaviour:
   - name: link
     x: 0
     y: 968
-    width: 1240
+    width: 620
     height: 1080
     borderLeft: 0
     borderRight: 0

@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: a2893011dfdb645e5aa6cb3a28cd711f, type: 2}
   mSprites:
   - name: back
-    x: 147
-    y: 129
+    x: 827
+    y: 878
     width: 146
     height: 146
     borderLeft: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 2
   - name: hint
-    x: 732
+    x: 294
     y: 571
     width: 145
     height: 145
@@ -133,8 +133,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: home
-    x: 586
-    y: 571
+    x: 294
+    y: 279
     width: 145
     height: 145
     borderLeft: 0
@@ -146,8 +146,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: home 1
-    x: 294
-    y: 279
+    x: 732
+    y: 571
     width: 145
     height: 145
     borderLeft: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: level
     x: 147
-    y: 570
+    y: 423
     width: 146
     height: 146
     borderLeft: 0
@@ -185,8 +185,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: level_checked
-    x: 878
-    y: 571
+    x: 294
+    y: 133
     width: 145
     height: 145
     borderLeft: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
     paddingBottom: 1
   - name: lv1
     x: 147
-    y: 423
+    y: 570
     width: 146
     height: 146
     borderLeft: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: lv2
     x: 0
-    y: 570
+    y: 423
     width: 146
     height: 146
     borderLeft: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: lv3
     x: 0
-    y: 423
+    y: 129
     width: 146
     height: 146
     borderLeft: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: lv4
     x: 147
-    y: 276
+    y: 129
     width: 146
     height: 146
     borderLeft: 0
@@ -250,8 +250,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: menu
-    x: 827
-    y: 878
+    x: 0
+    y: 570
     width: 146
     height: 146
     borderLeft: 0
@@ -263,8 +263,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mute
-    x: 294
-    y: 425
+    x: 440
+    y: 571
     width: 145
     height: 145
     borderLeft: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: only_effect
-    x: 294
+    x: 878
     y: 571
     width: 145
     height: 145
@@ -289,7 +289,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: other
-    x: 440
+    x: 586
     y: 571
     width: 145
     height: 145
@@ -315,7 +315,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: replayall
-    x: 0
+    x: 147
     y: 276
     width: 146
     height: 146
@@ -329,7 +329,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: review
     x: 294
-    y: 133
+    y: 425
     width: 145
     height: 145
     borderLeft: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: volume
     x: 0
-    y: 129
+    y: 276
     width: 146
     height: 146
     borderLeft: 0
