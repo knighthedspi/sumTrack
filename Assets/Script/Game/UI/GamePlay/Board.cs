@@ -80,20 +80,33 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	public void Init(int level)
+	public void Init(int level, bool isNew = false)
 	{
 		_currentLevel 	= level;
 		_isFinish 		= false;
 		boardSize = new Vector2 ();
-		List<BlockInfo> blockInfoes = GamePlayService.CreateBlockList (level);
-		blocks.Clear ();
+
 		GamePlay.Instance.history.Clear ();
+		// create blockinfo list
+		List<BlockInfo> blockInfoes = new List<BlockInfo> ();;
+		if(!isNew)
+		{
+			// load block from old state
+			blockInfoes = GamePlayService.restoreState();
+			List<History> currentHistory = GamePlayService.restoreHistory();
+			if(currentHistory != null)
+				GamePlay.Instance.history = currentHistory;
 
-		List<History> currentHistory = GamePlayService.restoreHistory();
-		if(currentHistory != null)
-			GamePlay.Instance.history = currentHistory;
+		}
 
+		// create new if restore not work
+		if(blockInfoes == null || blockInfoes.Count == 0)
+		{
+			GamePlay.Instance.history = new List<History>(); 
+			blockInfoes =  GamePlayService.CreateBlockList (level);
+		}
 
+		blocks.Clear ();
 		blockInfoes = GamePlayService.AddStartToOrigin (blockInfoes);
 
 		int count = 0; // set id
@@ -113,6 +126,7 @@ public class Board : MonoBehaviour {
 			block.blockInfo.id = count;
 			block.moveComplete = OnBlockMoveComplete;
 			blocks.Add(block);
+			Debug.Log(block.blockInfo.type.ToString());
 
 		}
 
@@ -132,7 +146,9 @@ public class Board : MonoBehaviour {
 	public IEnumerator StartGameAnim()
 	{
 		List<Block> originBlock = blocks.FindAll (x => x.blockInfo.type == BlockType.origin);
-		List<Block> normalBlock = blocks.FindAll (x => x.blockInfo.type != BlockType.origin);
+		List<Block> normalBlock = blocks.FindAll (x => x.blockInfo.type != BlockType.origin 
+		                                          && x.blockInfo.type != BlockType.normalDone 
+		                                          && x.blockInfo.type != BlockType.start);
 		foreach(Block origin in originBlock)
 		{
 
@@ -150,9 +166,19 @@ public class Board : MonoBehaviour {
 
 	public void ResetGameAnim()
 	{
+
 		foreach(Block bl in blocks)
 		{
-			GamePlayService.ScaleTo(bl.gameObject,Vector3.one,Vector3.zero,1f,Config.EASE_SCALE_IN,"OnBlockDestroy",this.gameObject);
+			Vector3 localScale = bl.transform.localScale;
+			if(localScale.magnitude != 0)
+			{
+				GamePlayService.ScaleTo(bl.gameObject,Vector3.one,Vector3.zero,1f,Config.EASE_SCALE_IN,"OnBlockDestroy",this.gameObject);
+			}
+			else
+			{
+				OnBlockDestroy();
+			}
+
 		}
 	}
 
@@ -167,7 +193,7 @@ public class Board : MonoBehaviour {
 				bl.Destroy();
 			}
 			blocks.Clear();
-			Init (_currentLevel);
+			Init (_currentLevel, true);
 			StartCoroutine(StartGameAnim());
 		}
 

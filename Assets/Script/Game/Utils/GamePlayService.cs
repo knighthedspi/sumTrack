@@ -103,9 +103,9 @@ public class GamePlayService  {
 
 	public static List<BlockInfo> CreateBlockList(int level)
 	{
-		List<BlockInfo> currentState = restoreState();
-		if(currentState != null)
-			return currentState;
+//		List<BlockInfo> currentState = restoreState();
+//		if(currentState != null)
+//			return currentState;
 		List<BlockInfo> infos = new List<BlockInfo> ();
 		List<BlockInfo> data = mapData [level];
 
@@ -119,6 +119,8 @@ public class GamePlayService  {
 		}
 		return infos;
 	}
+
+
 
 	/// <summary>
 	/// Moves to animatin using iTween

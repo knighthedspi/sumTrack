@@ -38,6 +38,13 @@ public class BoardWindow : WindowItemBase {
 		base.PreLoad ();
 	}
 
+
+	void Update()
+	{
+		if (undoBtn != null) 
+						undoBtn.GetComponent<UIButton> ().enabled = (GamePlay.Instance.history.Count != 0);
+	}
+
 	public void LoadLevel(int level)
 	{
 		if (_currentBoard != null && level == AppManager.Instance.playingLevel)
