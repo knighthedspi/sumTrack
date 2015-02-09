@@ -67,7 +67,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  iPhoneBundleIdentifier: vn.ktech.sumtrack
+  iPhoneBundleIdentifier: vn.ktech.plus
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   productGUID: 9c400b949098c4fd1af02a61fd2a179b
@@ -155,10 +155,10 @@ PlayerSettings:
   flashStrippingLevel: 2
   spritePackerPolicy: 
   scriptingDefineSymbols:
-    1: SOOMLA_FACEBOOK
-    2: SOOMLA_FACEBOOK
-    4: SOOMLA_FACEBOOK
-    7: SOOMLA_FACEBOOK
+    1: SOOMLA_TWITTER;SOOMLA_FACEBOOK
+    2: SOOMLA_TWITTER;SOOMLA_FACEBOOK
+    4: SOOMLA_TWITTER;SOOMLA_FACEBOOK
+    7: SOOMLA_TWITTER;SOOMLA_FACEBOOK
   metroPackageName: sumTrack
   metroPackageLogo: 
   metroPackageLogo140: 

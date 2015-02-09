@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   appIds:
-  - 752291714818823
+  - 663004020478732
   appLabels:
-  - Picopiece
+  - Plus
   cookie: 1
   logging: 1
   status: 1
