@@ -3,13 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public enum DialogType
 {
-	DialogOneButton,
-	DialogBonus,
-	DialogTwoButton,
-    DialogResult,
-    DialogHighScore,
-	DialogPause,
-    DialogLevelUp,
+	DialogHint,
 }
 
 public enum DialogTransition

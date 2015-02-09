@@ -96,12 +96,12 @@ public class DialogManager : Singleton<DialogManager> {
 		if(!_dialogWindow)
 		{
 			OPDebug.Log("add dialog window");
-			GameObject root = ViewManager.Instance.globalViewObject;
-			NGUITools.BringForward(root);
+			GameObject root = UIManager.Instance.uiRoot.gameObject;
 			_dialogWindow = NGUITools.AddChild(root);
-            _dialogWindow.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            _dialogWindow.transform.localScale = new Vector3(3f, 3f, 1f);
 			_dialogWindow.name = "DialogWindow";
 		}
+//		UIManager.Instance.disable = false;
 		return _dialogWindow;
 	}
 
