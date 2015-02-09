@@ -20,12 +20,12 @@ MonoBehaviour:
     - name: HighwayEnvKey
       value: '[YOUR ENV KEY]'
     - name: TwitterConsumerKey
-      value: YOUR TWITTER CONSUMER KEY
+      value: rd9Z31zrlG3E7Hyww3SWXzoOJ
     - name: TwitterConsumerSecret
-      value: YOUR TWITTER CONSUMER SECRET
+      value: ZVSuUwHwftRjcsmTYgtNhBt7eVTgeHjUIB0ndMhDcRwTt3u4vH
     - name: GPClientId
       value: YOUR GOOGLE+ CLIENT ID
     - name: SocialIntegration
-      value: facebook,1
+      value: facebook,1;twitter,1
     - name: DebugMessages
       value: False

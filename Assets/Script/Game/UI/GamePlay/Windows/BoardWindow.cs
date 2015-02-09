@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Soomla.Profile;
+using Soomla;
+
+
 
 public class BoardWindow : WindowItemBase {
 	private Dictionary<int, Board> dicBoard ;
@@ -22,6 +26,8 @@ public class BoardWindow : WindowItemBase {
 
 	private string SE_CLEAR = "Jingle_Clear";
 	private string SE_Button = "SE_Back";
+
+	private string SHARE = "I completed level {0} in Plus: puzzle. Check it out! #plusgame http://plus-game.tk";
 
 	protected override void Awake ()
 	{
@@ -200,10 +206,18 @@ public class BoardWindow : WindowItemBase {
 		StartCoroutine (_currentBoard.StartScaleAnim ());
 	}
 
+	public void shareCallBack()
+	{
+		Debug.Log("Thank you for sharing");
+	}
+
 	public void OnShareClick()
 	{
 		if(SoundManager.isSound)
 			SoundManager.Instance.PlaySE(SE_Button);
+		SoomlaProfile.Login(Provider.FACEBOOK);
+		if(SoomlaProfile.IsLoggedIn(Provider.FACEBOOK))
+			SoomlaProfile.UpdateStatus(Provider.FACEBOOK, string.Format(SHARE, AppManager.Instance.playingLevel));
 	}
 
 	public void OnNextClick()
