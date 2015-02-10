@@ -83,6 +83,8 @@ public class BoardWindow : WindowItemBase {
 		undoBtn.localPosition 	= new Vector3 (WindowManager.Instance.footerLeft.localPosition.x,0,0);
 		replayBtn.localPosition 	= new Vector3 (WindowManager.Instance.footerRight.localPosition.x,0,0);
 		ChangeSpriteSoundBtn();
+		if (GoogleAnalytics.instance)
+			GoogleAnalytics.instance.LogScreen("BoardWindow: level " + AppManager.Instance.playingLevel);
 	}
 
 	public void OnLevelLoaded()

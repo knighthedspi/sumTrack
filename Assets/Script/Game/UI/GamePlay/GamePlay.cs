@@ -25,6 +25,8 @@ public class GamePlay : View {
 	{
 		Debug.Log("start------------------");
 		WindowManager.Instance.ChangeWindow (WindowName.OptionWindow,TransitionType.TopToBottom);
+		if (GoogleAnalytics.instance)
+			GoogleAnalytics.instance.LogScreen("Game play: level " + AppManager.Instance.playingLevel);
 	}
 
 	protected override void OnOpen (params object[] parameters)
