@@ -92,7 +92,7 @@ public class Board : MonoBehaviour {
 		if(!isNew)
 		{
 			// load block from old state
-			blockInfoes = GamePlayService.restoreState();
+			blockInfoes = GamePlayService.restoreState(level);
 			List<History> currentHistory = GamePlayService.restoreHistory();
 			if(currentHistory != null)
 				GamePlay.Instance.history = currentHistory;
