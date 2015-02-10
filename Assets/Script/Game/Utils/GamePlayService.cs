@@ -195,6 +195,7 @@ public class GamePlayService  {
 		if(isFinish){
 			PlayerPrefs.SetString(Config.CURRENT_STATE, "");
 			PlayerPrefs.SetInt(Config.CURRENT_LEVEL, currentLevel + 1);
+			PlayerPrefs.SetString(Config.DATA_LEVEL + currentLevel.ToString(), "");
 		}else{
 			string data = "";
 			foreach(Block block in blocks){
@@ -212,6 +213,7 @@ public class GamePlayService  {
 			Debug.Log(data);
 			PlayerPrefs.SetString(Config.CURRENT_STATE, data);
 			PlayerPrefs.SetInt(Config.CURRENT_LEVEL, currentLevel);
+			PlayerPrefs.SetString(Config.DATA_LEVEL + currentLevel.ToString(), currentLevel);
 		}	
 	}
 
