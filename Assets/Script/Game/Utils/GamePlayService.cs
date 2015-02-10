@@ -196,6 +196,7 @@ public class GamePlayService  {
 			PlayerPrefs.SetString(Config.CURRENT_STATE, "");
 			PlayerPrefs.SetInt(Config.CURRENT_LEVEL, currentLevel + 1);
 			PlayerPrefs.SetString(Config.DATA_LEVEL + currentLevel.ToString(), "");
+			currentLevel ++;
 		}else{
 			string data = "";
 			foreach(Block block in blocks){
@@ -213,13 +214,33 @@ public class GamePlayService  {
 			Debug.Log(data);
 			PlayerPrefs.SetString(Config.CURRENT_STATE, data);
 			PlayerPrefs.SetInt(Config.CURRENT_LEVEL, currentLevel);
-			PlayerPrefs.SetString(Config.DATA_LEVEL + currentLevel.ToString(), currentLevel);
-		}	
+			PlayerPrefs.SetString(Config.DATA_LEVEL + currentLevel.ToString(), data);
+		}
+		PlayerPrefs.SetInt(Config.CURRENT_MAX_LEVEL, currentLevel);
 	}
 
 	public static List<BlockInfo> restoreState()
 	{
 		String currentState = PlayerPrefs.GetString(Config.CURRENT_STATE);
+		if(currentState.Equals("") )
+			return null;
+		else{
+			Debug.Log(currentState);
+			string [] blockInfoStrs = currentState.Split("\n"[0]);
+			List<BlockInfo> infos = new List<BlockInfo> ();
+			foreach(string blockInfoStr in blockInfoStrs)
+			{
+				if(blockInfoStr.Trim().Equals(""))
+					break;
+				infos.Add (getBlockInfo(blockInfoStr));
+			}
+			return infos;
+		}
+	}
+
+	public static List<BlockInfo> restoreState(int level)
+	{
+		String currentState = PlayerPrefs.GetString(Config.DATA_LEVEL + level.ToString());
 		if(currentState.Equals("") )
 			return null;
 		else{

@@ -85,6 +85,7 @@ public static class Config
 	// key for player prefs
 	public const string					CURRENT_STATE					= "CurrentState"; 
 	public const string					DATA_LEVEL						= "DataLevel";
+	public const string					CURRENT_MAX_LEVEL				= "CurrentMaxLevel";
 	public const string					CURRENT_LEVEL					= "CurrentLevel"; 
 	public const string					CURRENT_HISTORY					= "CurrentHistory"; 
 }
