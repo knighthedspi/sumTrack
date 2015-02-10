@@ -306,6 +306,11 @@ public class SoundManager  : Singleton<SoundManager> {
             SoundManager.Instance.StopBGM();
         }
 	}
+
+	public bool getIsSound()
+	{
+		return PlayerPrefs.GetInt("isSound",1) == 1;
+	}
 }
 
 [Serializable]

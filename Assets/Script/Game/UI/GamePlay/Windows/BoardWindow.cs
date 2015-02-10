@@ -33,7 +33,6 @@ public class BoardWindow : WindowItemBase {
 	{
 		base.Awake ();
 		dicBoard = new Dictionary<int,Board > ();
-		ChangeSpriteSoundBtn();
 	}
 
 	public override void PreLoad ()
@@ -83,6 +82,7 @@ public class BoardWindow : WindowItemBase {
 		soundBtn.localPosition 	= new Vector3 (WindowManager.Instance.headerRight.localPosition.x,0,0);
 		undoBtn.localPosition 	= new Vector3 (WindowManager.Instance.footerLeft.localPosition.x,0,0);
 		replayBtn.localPosition 	= new Vector3 (WindowManager.Instance.footerRight.localPosition.x,0,0);
+		ChangeSpriteSoundBtn();
 	}
 
 	public void OnLevelLoaded()
@@ -114,21 +114,21 @@ public class BoardWindow : WindowItemBase {
 
 	public void OnOptionBtnClick()
 	{
-		if(SoundManager.isSound)
+		if(SoundManager.Instance.getIsSound())
 			SoundManager.Instance.PlaySE(SE_Button);
 		WindowManager.Instance.ChangeWindow (WindowName.OptionWindow, TransitionType.BottomToTop);
 	}
 
 	public void OnResetBtnClick()
 	{
-		if(SoundManager.isSound)
+		if(SoundManager.Instance.getIsSound())
 			SoundManager.Instance.PlaySE(SE_Button);
 		dicBoard [AppManager.Instance.playingLevel].ResetGameAnim ();
 	}
 
 	public void OnUndoBtnClick()
 	{
-		if(SoundManager.isSound)
+		if(SoundManager.Instance.getIsSound())
 			SoundManager.Instance.PlaySE(SE_Button);
 		dicBoard [AppManager.Instance.playingLevel].OnUndoAction ();
 	}
@@ -213,7 +213,7 @@ public class BoardWindow : WindowItemBase {
 
 	public void OnShareClick()
 	{
-		if(SoundManager.isSound)
+		if(SoundManager.Instance.getIsSound())
 			SoundManager.Instance.PlaySE(SE_Button);
 		SoomlaProfile.Login(Provider.FACEBOOK);
 		if(SoomlaProfile.IsLoggedIn(Provider.FACEBOOK))
@@ -222,7 +222,7 @@ public class BoardWindow : WindowItemBase {
 
 	public void OnNextClick()
 	{
-		if(SoundManager.isSound)
+		if(SoundManager.Instance.getIsSound())
 			SoundManager.Instance.PlaySE(SE_Button);
 		if (_isProcessing)
 						return;
@@ -238,16 +238,16 @@ public class BoardWindow : WindowItemBase {
 
 	public void OnSoundClick()
 	{
-		if(SoundManager.isSound)
+		if(SoundManager.Instance.getIsSound())
 			SoundManager.Instance.PlaySE(SE_Button);
-		SoundManager.Instance.setIsSound(!SoundManager.isSound);
+		SoundManager.Instance.setIsSound(!SoundManager.Instance.getIsSound());
 		ChangeSpriteSoundBtn();
 	}
 
 	public void ChangeSpriteSoundBtn()
 	{
-		UIButton btn = SoundSettingBtn.GetComponentInChildren<UIButton>();
-		if (SoundManager.isSound)
+		UIButton btn = SoundSettingBtn.GetComponent<UIButton>();
+		if (SoundManager.Instance.getIsSound())
 		{
 			btn.normalSprite = "volume";
 		}
