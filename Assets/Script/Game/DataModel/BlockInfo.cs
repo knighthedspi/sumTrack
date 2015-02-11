@@ -7,6 +7,7 @@ public enum BlockType
 	normal ,
 	normalTwice,
 	normalTri,
+	normalQuad,
 
 	origin,
 	originDone,

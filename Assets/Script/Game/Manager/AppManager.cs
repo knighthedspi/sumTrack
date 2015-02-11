@@ -12,6 +12,7 @@ public class AppManager : Singleton<AppManager>
 
 	void Start()
 	{
+		PlayerPrefs.SetInt (Config.CURRENT_MAX_LEVEL, 45);
 
 		gamePlayInfo 			= new GamePlayInfo ();
 

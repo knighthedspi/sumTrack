@@ -90,6 +90,9 @@ public class GamePlayService  {
 							case 3:
 								block.type = BlockType.normalTri;
 								break;
+							case 4:
+								block.type = BlockType.normalQuad;
+								break;
 							default:
 								break;
 						}

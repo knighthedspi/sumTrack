@@ -221,7 +221,8 @@ public class Board : MonoBehaviour {
 	private bool CheckWin ()
 	{
 		 List<Block> hasPointBlock = blocks.FindAll (x => (x.blockInfo.type == BlockType.origin || x.blockInfo.type == BlockType.normal
-						|| x.blockInfo.type == BlockType.normalTri || x.blockInfo.type == BlockType.normalTwice));
+						|| x.blockInfo.type == BlockType.normalTri || x.blockInfo.type == BlockType.normalTwice
+		                                                  || x.blockInfo.type == BlockType.normalQuad));
 		return (hasPointBlock.Count <= 0);
 	}
 

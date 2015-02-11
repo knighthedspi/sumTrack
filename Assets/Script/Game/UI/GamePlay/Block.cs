@@ -7,6 +7,7 @@ public class Block : MonoBehaviour {
 	const string CIRCLE_NORMAL	= "lv1";
 	const string CIRCLE_TWICE	= "lv2";
 	const string CIRCLE_TRI		= "lv3";
+	const string CIRCLE_QUAD	= "lv4";
 	const string CIRCLE_DONE	= "check1";
 	const string RETANGLE_BG	= "start";
 	const string RETANGLE_NORMAL	= "";
@@ -74,7 +75,7 @@ public class Block : MonoBehaviour {
 	public void OnOriginPassed()
 	{
 		int newType = (int)blockInfo.type - 1;
-		if (newType < (int)BlockType.normalDone || newType > (int)BlockType.normalTri)
+		if (newType < (int)BlockType.normalDone || newType > (int)BlockType.normalQuad)
 						return;
 		BlockInfo newInfo 	= new BlockInfo (blockInfo);
 		newInfo.type 		= (BlockType)newType;
@@ -215,6 +216,9 @@ public class Block : MonoBehaviour {
 
 		case BlockType.normalTwice:
 			background.spriteName = CIRCLE_TWICE;
+			break;
+		case BlockType.normalQuad:
+			background.spriteName = CIRCLE_QUAD; 
 			break;
 
 		case BlockType.origin:
