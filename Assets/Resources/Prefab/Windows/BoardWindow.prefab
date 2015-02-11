@@ -1479,8 +1479,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 307c888b8aa594e9494e4b1a312a29a0, type: 2}
-  mSpriteName: hint
+  mAtlas: {fileID: 11400000, guid: 6685a0b36d63f443ba257a07c6b9944b, type: 2}
+  mSpriteName: tutorial 1
   mFillCenter: 1
 --- !u!114 &11400028
 MonoBehaviour:
