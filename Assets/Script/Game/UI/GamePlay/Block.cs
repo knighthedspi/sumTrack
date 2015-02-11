@@ -86,7 +86,8 @@ public class Block : MonoBehaviour {
 	{
 		BlockInfo info = block.blockInfo;
 
-		if (info.type == BlockType.start || info.type == BlockType.normalDone || info.type == BlockType.originDone)
+		if (info.type == BlockType.start || info.type == BlockType.normalDone || 
+		    info.type == BlockType.originDone || info.type == BlockType.error)
 						return;
 		if (_listMove.Find (x => x.blockInfo.posInBoard == block.blockInfo.posInBoard) != null)
 						return;

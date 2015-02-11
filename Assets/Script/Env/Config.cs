@@ -33,8 +33,6 @@ public static class Config
 	public static readonly int    		LAYER_LABEL           			= LayerMask.NameToLayer("Label");
 	public static readonly int    		LAYER_MONSTER         			= LayerMask.NameToLayer("Monster");
 
-	public const int			  		COUNT_OF_MONSTERS     			= 5;	
-	public const int					COUNT_OF_TROOPS					= 3;
 
 	public const string 				WINDOW_PATH						= "Prefab/Windows/";
 	public const string			  		MONSTER_RESOURCE_PREFIX			= "Prefab/Monster/";	

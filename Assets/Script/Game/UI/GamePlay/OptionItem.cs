@@ -34,6 +34,7 @@ public class OptionItem : MonoBehaviour {
 			GameObject go = NGUITools.AddChild(gameObject,blockPrefabs);
 			LevelBlock lb = go.GetComponent<LevelBlock>();
 			lb.level = minLevel + i;
+			lb.GetComponent<UIWidget>().depth = 5;
 			int numPosX = (i+1) % 3;
 			numPosX = (numPosX > 1) ?  -1 : numPosX;
 

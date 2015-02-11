@@ -32,7 +32,7 @@ public class LevelBlock : MonoBehaviour {
 			else
 			{
 				levelText.text = _level.ToString();
-				isChecked = (_level < AppManager.Instance.playingLevel);
+				isChecked = (_level < AppManager.Instance.playingMaxLevel);
 			}
 
 		}
@@ -40,6 +40,16 @@ public class LevelBlock : MonoBehaviour {
 		{
 			return _level;
 		}
+	}
+
+	public void OnClick()
+	{
+		Debug.Log("On click");
+		if (_level > AppManager.Instance.playingMaxLevel)
+						return;
+
+		AppManager.Instance.playingLevel = _level;
+		WindowManager.Instance.ChangeWindow (WindowName.BoardWindow,TransitionType.TopToBottom);
 	}
 
 }
