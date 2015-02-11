@@ -547,23 +547,29 @@ MonoBehaviour:
   - position
   - islocal
   - time
-  indexes: 000000000000000000000000
+  - oncomplete
+  - oncompletetarget
+  indexes: 0000000000000000000000000000000000000000
   metadatas:
   - v
+  - 
+  - 
   - 
   - 
   ints: 
   floats:
   - 1
   bools: 01
-  strings: []
+  strings:
+  - OnShowComplete
   vector3s:
   - {x: 0, y: 425, z: 0}
   colors: []
   spaces: 
   easeTypes: 
   loopTypes: 
-  gameObjects: []
+  gameObjects:
+  - {fileID: 100006}
   transforms: []
   audioClips: []
   audioSources: []
@@ -590,23 +596,29 @@ MonoBehaviour:
   - position
   - islocal
   - time
-  indexes: 000000000000000000000000
+  - oncomplete
+  - oncompletetarget
+  indexes: 0000000000000000000000000000000000000000
   metadatas:
   - v
+  - 
+  - 
   - 
   - 
   ints: 
   floats:
   - 1
   bools: 01
-  strings: []
+  strings:
+  - OnHideComplete
   vector3s:
   - {x: -1000, y: 425, z: 0}
   colors: []
   spaces: 
   easeTypes: 
   loopTypes: 
-  gameObjects: []
+  gameObjects:
+  - {fileID: 100006}
   transforms: []
   audioClips: []
   audioSources: []

@@ -52,18 +52,24 @@ public class BoardWindow : WindowItemBase {
 
 	public void LoadLevel(int level)
 	{
-		if (_currentBoard != null && level == AppManager.Instance.playingLevel)
+		if (_currentBoard != null && dicBoard.ContainsKey(level) && _currentBoard == dicBoard[level])
 						return;
 		_nextLevel = level;
 		Board board = dicBoard.ContainsKey (level) ? dicBoard [level] : CreateNewBoard (level);
 
 		title.text = string.Format ("Level " + level.ToString ());
-		if(_currentBoard != null)
+		if(_currentBoard != null )
 		{
 			Vector3 oldPos = board.transform.localPosition;
 			GamePlayService.MoveToAnimation(board.gameObject,oldPos + new Vector3(1000,0,0),oldPos,0.5f,"OnLevelLoaded",this.gameObject);
-			GamePlayService.MoveToAnimation(_currentBoard.gameObject,_currentBoard.transform.localPosition,
-			                                _currentBoard.transform.localPosition + new Vector3(-1000,0,0),0.5f);
+
+			//if new board is not current board
+			if(_currentBoard != board)
+			{
+				GamePlayService.MoveToAnimation(_currentBoard.gameObject,_currentBoard.transform.localPosition,
+				                                _currentBoard.transform.localPosition + new Vector3(-1000,0,0),0.5f);
+			}
+
 		}
 		else
 		{

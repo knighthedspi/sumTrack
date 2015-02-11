@@ -42,4 +42,10 @@ public class LevelBlock : MonoBehaviour {
 		}
 	}
 
+	public void OnClick()
+	{
+		AppManager.Instance.playingLevel = _level;
+		WindowManager.Instance.ChangeWindow (WindowName.BoardWindow,TransitionType.TopToBottom);
+	}
+
 }

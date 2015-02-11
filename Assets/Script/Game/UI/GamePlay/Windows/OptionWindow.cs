@@ -21,6 +21,7 @@ public class OptionWindow : WindowItemBase {
 	private List<Vector2> _touchList;
 	private List<LevelBlock> _listBlock;
 	private bool _isMoving = false;
+	private bool _isShowMenu = false;
 	private Color[] colors = new Color[] {Color.red, Color.blue, Color.yellow,Color.black, Color.gray};
 //	public UILabel title;
 	
@@ -76,7 +77,11 @@ public class OptionWindow : WindowItemBase {
 
 	public void OnReviewBtnCLick()
 	{
-
+#if UNITY_ANDROID
+		Application.OpenURL("market://details?id=vn.ktech.sumtrack/");
+#elif UNITY_IPHONE
+		Application.OpenURL("itms-apps://itunes.apple.com/app/id966189502");
+#endif
 	}
 
 	public IEnumerator UpdateStatus()
@@ -127,8 +132,36 @@ public class OptionWindow : WindowItemBase {
 	public void OnMenuBtnClick()
 	{
 		Debug.Log("On menu button click");
+		ShowMenu ();
+	}
+
+
+	// Menu bar
+	private void ShowMenu()
+	{
+		if (_isShowMenu)
+						return;
 		iTweenEvent.GetEvent (menuBar, "Show").Play ();
 	}
+
+	private void HideMenu()
+	{
+		if (!_isShowMenu)
+						return;
+		iTweenEvent.GetEvent (menuBar, "Hide").Play ();
+	}
+
+	private void OnShowComplete()
+	{
+		_isShowMenu = true;
+	}
+
+	private void OnHideComplete()
+	{
+		_isShowMenu = false;
+	}
+
+	// End Menu bar
 
 	public void OnMoveTop()
 	{
@@ -171,6 +204,10 @@ public class OptionWindow : WindowItemBase {
 
 	void Update()
 	{
+		if(Input.GetMouseButtonUp(0))
+		{
+			HideMenu();
+		}
 		if(Input.GetMouseButton(0))
 		{
 			Vector2 touch = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
