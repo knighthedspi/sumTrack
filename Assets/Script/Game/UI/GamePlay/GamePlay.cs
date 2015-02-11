@@ -24,15 +24,29 @@ public class GamePlay : View {
 	void Start()
 	{
 		Debug.Log("start------------------");
-		WindowManager.Instance.ChangeWindow (WindowName.OptionWindow,TransitionType.TopToBottom);
-		if (GoogleAnalytics.instance)
-			GoogleAnalytics.instance.LogScreen("Game play: level " + AppManager.Instance.playingLevel);
+		StartCoroutine (WaitAndSetup ());
 	}
 
 	protected override void OnOpen (params object[] parameters)
 	{
 		if(SoundManager.isSound)
 			SoundManager.Instance.PlayBGM(BGM);
+	}
+
+	private IEnumerator WaitAndSetup()
+	{
+		yield return new WaitForEndOfFrame ();
+		if(AppManager.Instance.playingMaxLevel <= 1)
+		{
+			WindowManager.Instance.ChangeWindow (WindowName.BoardWindow,TransitionType.TopToBottom);
+		}
+		else
+		{
+			WindowManager.Instance.ChangeWindow (WindowName.OptionWindow,TransitionType.TopToBottom);
+		}
+
+		if (GoogleAnalytics.instance)
+			GoogleAnalytics.instance.LogScreen("Game play: level " + AppManager.Instance.playingLevel);
 	}
 
 }

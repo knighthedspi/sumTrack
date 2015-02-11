@@ -126,7 +126,6 @@ public class Board : MonoBehaviour {
 			block.blockInfo.id = count;
 			block.moveComplete = OnBlockMoveComplete;
 			blocks.Add(block);
-			Debug.Log(block.blockInfo.type.ToString());
 
 		}
 
