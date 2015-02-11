@@ -216,7 +216,16 @@ public class GamePlayService  {
 			PlayerPrefs.SetInt(Config.CURRENT_LEVEL, currentLevel);
 			PlayerPrefs.SetString(Config.DATA_LEVEL + currentLevel.ToString(), data);
 		}
-		PlayerPrefs.SetInt(Config.CURRENT_MAX_LEVEL, currentLevel);
+		 
+		// set max level
+		int max = PlayerPrefs.GetInt (Config.CURRENT_MAX_LEVEL);
+		Debug.Log("max------------- " + max.ToString());
+		if(max < currentLevel)
+		{
+			AppManager.Instance.playingMaxLevel = currentLevel;
+			PlayerPrefs.SetInt(Config.CURRENT_MAX_LEVEL, currentLevel);
+		}
+			
 	}
 
 	public static List<BlockInfo> restoreState()

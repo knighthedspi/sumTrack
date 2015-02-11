@@ -7,9 +7,11 @@ using Soomla;
 
 
 public class BoardWindow : WindowItemBase {
-	private Dictionary<int, Board> dicBoard ;
+//	private Dictionary<int, Board> dicBoard ;
 	private Board _currentBoard;
+	private Board _nextBoard;
 	private int _nextLevel;
+	private int _currentLevel;
 
 	public GameObject SoundSettingBtn;
 	public GameObject boardPrefab;
@@ -32,7 +34,7 @@ public class BoardWindow : WindowItemBase {
 	protected override void Awake ()
 	{
 		base.Awake ();
-		dicBoard = new Dictionary<int,Board > ();
+//		dicBoard = new Dictionary<int,Board > ();
 	}
 
 	public override void PreLoad ()
@@ -52,28 +54,24 @@ public class BoardWindow : WindowItemBase {
 
 	public void LoadLevel(int level)
 	{
-		if (_currentBoard != null && dicBoard.ContainsKey(level) && _currentBoard == dicBoard[level])
+		if (_currentBoard != null && _currentLevel == level)
 						return;
 		_nextLevel = level;
-		Board board = dicBoard.ContainsKey (level) ? dicBoard [level] : CreateNewBoard (level);
+		_nextBoard =  CreateNewBoard (level);
 
 		title.text = string.Format ("Level " + level.ToString ());
 		if(_currentBoard != null )
 		{
-			Vector3 oldPos = board.transform.localPosition;
-			GamePlayService.MoveToAnimation(board.gameObject,oldPos + new Vector3(1000,0,0),oldPos,0.5f,"OnLevelLoaded",this.gameObject);
+			Vector3 oldPos = _nextBoard.transform.localPosition;
+			GamePlayService.MoveToAnimation(_nextBoard.gameObject,oldPos + new Vector3(1000,0,0),oldPos,0.5f,"OnLevelLoaded",this.gameObject);
 
-			//if new board is not current board
-			if(_currentBoard != board)
-			{
-				GamePlayService.MoveToAnimation(_currentBoard.gameObject,_currentBoard.transform.localPosition,
+			GamePlayService.MoveToAnimation(_currentBoard.gameObject,_currentBoard.transform.localPosition,
 				                                _currentBoard.transform.localPosition + new Vector3(-1000,0,0),0.5f);
-			}
 
 		}
 		else
 		{
-			_currentBoard = board;
+			_currentBoard = _nextBoard;
 			StartCoroutine(_currentBoard.StartGameAnim());
 		}
 
@@ -96,13 +94,17 @@ public class BoardWindow : WindowItemBase {
 	public void OnLevelLoaded()
 	{
 		ShowHeaderFooter ();
-		_currentBoard.gameObject.SetActive (false);
+		if(_currentBoard != null)
+		{
+			GameObject.Destroy(_currentBoard.gameObject);
+		}
 		AppManager.Instance.playingLevel = _nextLevel;
-		_currentBoard = dicBoard [_nextLevel];
+		_currentBoard = _nextBoard;
 		StartCoroutine (_currentBoard.StartGameAnim ());
 
 		_isProcessing = false;
 	}
+
 	private Board CreateNewBoard(int level)
 	{
 		GameObject go = NGUITools.AddChild (gameObject, boardPrefab) as GameObject;
@@ -115,7 +117,7 @@ public class BoardWindow : WindowItemBase {
 		{
 			board.Init (level);
 			board.finish = OnGameFinish;
-			dicBoard[level] = board;
+//			dicBoard[level] = board;
 		}
 		return board;
 	}
@@ -131,14 +133,14 @@ public class BoardWindow : WindowItemBase {
 	{
 		if(SoundManager.Instance.getIsSound())
 			SoundManager.Instance.PlaySE(SE_Button);
-		dicBoard [AppManager.Instance.playingLevel].ResetGameAnim ();
+		_currentBoard.ResetGameAnim ();
 	}
 
 	public void OnUndoBtnClick()
 	{
 		if(SoundManager.Instance.getIsSound())
 			SoundManager.Instance.PlaySE(SE_Button);
-		dicBoard [AppManager.Instance.playingLevel].OnUndoAction ();
+		_currentBoard.OnUndoAction ();
 	}
 
 	//#TODO add sound

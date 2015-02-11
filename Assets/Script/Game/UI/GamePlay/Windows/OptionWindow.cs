@@ -86,7 +86,7 @@ public class OptionWindow : WindowItemBase {
 
 	public IEnumerator UpdateStatus()
 	{
-		List<LevelBlock> lists = _listBlock.FindAll (x => x.level >= currentLevel && x.level < AppManager.Instance.playingLevel);
+		List<LevelBlock> lists = _listBlock.FindAll (x => x.level >= currentLevel && x.level < AppManager.Instance.maxLevel);
 		foreach(LevelBlock lb in lists)
 		{
 			lb.level = lb.level;
@@ -189,7 +189,7 @@ public class OptionWindow : WindowItemBase {
 		iTween.MoveTo (grid,iTween.Hash(
 			"position",newPos,
 			"isLocal",true,
-			"time",0.7f,
+			"time",0.4f,
 			"easetype",iTween.EaseType.linear,
 			"oncomplete","moveComplete",
 			"oncompletetarget",this.gameObject));
