@@ -22,7 +22,7 @@ public class OptionWindow : WindowItemBase {
 	private List<LevelBlock> _listBlock;
 	private bool _isMoving = false;
 	private bool _isShowMenu = false;
-	private Color[] colors = new Color[] {Color.red, Color.blue, Color.yellow,Color.black, Color.gray};
+	private Color[] colors = new Color[] {Color.red, Color.blue, Color.green,Color.black, Color.gray};
 //	public UILabel title;
 	
 
