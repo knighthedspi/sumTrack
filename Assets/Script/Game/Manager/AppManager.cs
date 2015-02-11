@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class AppManager : Singleton<AppManager>
 {
 	public GamePlayInfo gamePlayInfo;
@@ -11,6 +12,7 @@ public class AppManager : Singleton<AppManager>
 
 	void Start()
 	{
+
 		gamePlayInfo 			= new GamePlayInfo ();
 
 		// block
@@ -25,6 +27,9 @@ public class AppManager : Singleton<AppManager>
 		// playing max level
 		int pMaxLevel 		= PlayerPrefs.GetInt (Config.CURRENT_MAX_LEVEL);
 		playingMaxLevel 	= pMaxLevel == 0 ? playingLevel : pMaxLevel;
+
+//		playingLevel = 1;
+//		playingMaxLevel = 1;
 
 		maxLevel = 45;
 	}

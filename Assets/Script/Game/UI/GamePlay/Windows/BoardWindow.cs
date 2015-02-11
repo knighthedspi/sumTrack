@@ -75,6 +75,12 @@ public class BoardWindow : WindowItemBase {
 			StartCoroutine(_currentBoard.StartGameAnim());
 		}
 
+		// tutorial
+		Debug.Log ("aaaaaaaaaaaaa    " + AppManager.Instance.playingMaxLevel.ToString ());
+		if(AppManager.Instance.playingMaxLevel == 1)
+		{
+			StartCoroutine(StartTutorial());
+		}
 
 
 	}
@@ -103,6 +109,14 @@ public class BoardWindow : WindowItemBase {
 		StartCoroutine (_currentBoard.StartGameAnim ());
 
 		_isProcessing = false;
+
+
+	}
+
+	private IEnumerator StartTutorial()
+	{
+		yield return new WaitForSeconds (1f);
+		OnHintClick ();
 	}
 
 	private Board CreateNewBoard(int level)
