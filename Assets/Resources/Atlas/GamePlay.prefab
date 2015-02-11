@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: a2893011dfdb645e5aa6cb3a28cd711f, type: 2}
   mSprites:
   - name: back
-    x: 827
-    y: 878
+    x: 147
+    y: 129
     width: 146
     height: 146
     borderLeft: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: done
-    x: 626
+    x: 425
     y: 824
     width: 200
     height: 200
@@ -107,7 +107,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 2
   - name: error
-    x: 425
+    x: 626
     y: 824
     width: 200
     height: 200
@@ -121,7 +121,7 @@ MonoBehaviour:
     paddingBottom: 2
   - name: hint
     x: 294
-    y: 571
+    y: 425
     width: 145
     height: 145
     borderLeft: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
     paddingBottom: 1
   - name: home
     x: 294
-    y: 279
+    y: 133
     width: 145
     height: 145
     borderLeft: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: home 1
-    x: 732
+    x: 440
     y: 571
     width: 145
     height: 145
@@ -186,7 +186,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: level_checked
     x: 294
-    y: 133
+    y: 571
     width: 145
     height: 145
     borderLeft: 0
@@ -198,8 +198,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: lv1
-    x: 147
-    y: 570
+    x: 0
+    y: 276
     width: 146
     height: 146
     borderLeft: 0
@@ -211,8 +211,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv2
-    x: 0
-    y: 423
+    x: 147
+    y: 570
     width: 146
     height: 146
     borderLeft: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: lv3
     x: 0
-    y: 129
+    y: 570
     width: 146
     height: 146
     borderLeft: 0
@@ -237,8 +237,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv4
-    x: 147
-    y: 129
+    x: 827
+    y: 878
     width: 146
     height: 146
     borderLeft: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: menu
     x: 0
-    y: 570
+    y: 129
     width: 146
     height: 146
     borderLeft: 0
@@ -263,19 +263,6 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mute
-    x: 440
-    y: 571
-    width: 145
-    height: 145
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 1
-    paddingTop: 0
-    paddingBottom: 1
-  - name: only_effect
     x: 878
     y: 571
     width: 145
@@ -288,8 +275,21 @@ MonoBehaviour:
     paddingRight: 1
     paddingTop: 0
     paddingBottom: 1
+  - name: only_effect
+    x: 294
+    y: 279
+    width: 145
+    height: 145
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 1
   - name: other
-    x: 586
+    x: 732
     y: 571
     width: 145
     height: 145
@@ -328,8 +328,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: review
-    x: 294
-    y: 425
+    x: 586
+    y: 571
     width: 145
     height: 145
     borderLeft: 0
@@ -366,9 +366,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: tutorial 1
+    x: 294
+    y: 4
+    width: 83
+    height: 128
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 32
+    paddingRight: 31
+    paddingTop: 7
+    paddingBottom: 11
   - name: volume
     x: 0
-    y: 276
+    y: 423
     width: 146
     height: 146
     borderLeft: 0
