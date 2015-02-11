@@ -14,6 +14,7 @@ public class OptionWindow : WindowItemBase {
 
 	public GameObject menuBar;
 	public GameObject grid;
+	public GameObject levelAnim;
 
 	const int BLOCK_PER_PAGE = 17;
 	private int currentLevel = 1;
@@ -60,6 +61,7 @@ public class OptionWindow : WindowItemBase {
 	public override void OnDataLoaded ()
 	{
 		base.OnDataLoaded ();
+		StartCoroutine (UpdateStatus());
 	}
 
 	public override void OnTransInFinish ()
@@ -90,9 +92,12 @@ public class OptionWindow : WindowItemBase {
 		foreach(LevelBlock lb in lists)
 		{
 			lb.level = lb.level;
+			if(lb.level == AppManager.Instance.playingMaxLevel)
+				levelAnim.transform.localPosition = lb.transform.localPosition;
 			yield return new WaitForSeconds(0.2f);
 		}
 		currentLevel = AppManager.Instance.playingLevel;
+
 	}
 
 
