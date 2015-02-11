@@ -67,19 +67,6 @@ MonoBehaviour:
     paddingRight: 24
     paddingTop: 20
     paddingBottom: 22
-  - name: tutorial 1
-    x: 744
-    y: 1920
-    width: 83
-    height: 128
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 32
-    paddingRight: 31
-    paddingTop: 7
-    paddingBottom: 11
   mPixelSize: 1
   mReplacement: {fileID: 0}
   mCoordinates: 0
