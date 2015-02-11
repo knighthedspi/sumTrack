@@ -779,7 +779,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 73, y: 73, z: 0}
+  m_Size: {x: 90, y: 55, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6500008
 BoxCollider:
@@ -1371,13 +1371,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: .737254918}
   mPivot: 4
-  mWidth: 65
-  mHeight: 65
+  mWidth: 82
+  mHeight: 47
   mDepth: 5
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1
+  aspectRatio: 1.56923079
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
@@ -1460,15 +1460,15 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: .101960786, g: .250980407, b: 1, a: 1}
   mPivot: 4
-  mWidth: 73
-  mHeight: 73
+  mWidth: 90
+  mHeight: 55
   mDepth: 4
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1
+  aspectRatio: 1.63636363
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1479,8 +1479,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 307c888b8aa594e9494e4b1a312a29a0, type: 2}
-  mSpriteName: hint
+  mAtlas: {fileID: 11400000, guid: 6685a0b36d63f443ba257a07c6b9944b, type: 2}
+  mSpriteName: tutorial 1
   mFillCenter: 1
 --- !u!114 &11400028
 MonoBehaviour:
