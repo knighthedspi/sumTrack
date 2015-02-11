@@ -232,6 +232,8 @@ public class Block : MonoBehaviour {
 
 		case BlockType.originDone:
 			background.spriteName = RETANGlE_DONE_BG;
+			background.GetComponent<UIWidget>().depth = 4;
+			_uiwidget.depth = 3;
 			numLabel.text = "";
 			break;
 		case BlockType.error:

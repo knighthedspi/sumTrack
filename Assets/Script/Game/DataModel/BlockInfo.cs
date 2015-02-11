@@ -73,6 +73,9 @@ public class BlockInfo  {
 		case BlockType.origin:
 			sizeImage = new Vector2(100,100);
 			break;
+		case BlockType.error:
+			sizeImage = new Vector2(100,100);
+			break;
 
 		default:
 			sizeImage = new Vector2(73,73);
