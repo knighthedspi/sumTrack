@@ -82,7 +82,6 @@ public class WindowItemBase : MonoBehaviour {
 
 	public void ShowHeaderFooter()
 	{
-		Debug.Log ( WindowManager.Instance.headerLeft.transform.localPosition);
 		if (header != null)
 		{
 			header.SetActive(true);

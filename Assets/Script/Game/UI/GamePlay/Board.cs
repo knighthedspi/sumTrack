@@ -134,7 +134,6 @@ public class Board : MonoBehaviour {
 		// calculate board size
 		boardSize.x = (boardSize.x + 1) * _setup.blockSize.x;
 		boardSize.y = (boardSize.y +1) * _setup.blockSize.y;
-		Debug.Log (boardSize);
 		// calculate position
 		transform.localPosition = Vector3.zero - new Vector3 (-_setup.boardSize.x + boardSize.x/2 - _setup.blockSize.x/2,
 		                                                      _setup.boardSize.y - boardSize.y/2 + _setup.blockSize.y/2);
@@ -145,21 +144,15 @@ public class Board : MonoBehaviour {
 	public IEnumerator StartGameAnim()
 	{
 		List<Block> originBlock = blocks.FindAll (x => x.blockInfo.type == BlockType.origin);
-		List<Block> normalBlock = blocks.FindAll (x => x.blockInfo.type != BlockType.origin 
-		                                          && x.blockInfo.type != BlockType.normalDone 
+		List<Block> normalBlock = blocks.FindAll (x => 
+		                                           x.blockInfo.type != BlockType.normalDone 
 		                                          && x.blockInfo.type != BlockType.start);
-		foreach(Block origin in originBlock)
-		{
-
-				GamePlayService.ScaleTo(origin.gameObject,Vector3.zero,Vector3.one,1.5f,Config.EASE_SCALE_OUT);
-		}
-
-		yield return new WaitForSeconds (0.2f);
 
 		foreach(Block normal in normalBlock)
 		{
+			yield return new WaitForSeconds (0.1f);
 			if(normal.blockInfo.type != BlockType.start)
-				GamePlayService.ScaleTo(normal.gameObject,Vector3.zero,Vector3.one,1.5f,Config.EASE_SCALE_OUT);
+				GamePlayService.ScaleTo(normal.gameObject,Vector3.zero,Vector3.one,0.6f,LeanTweenType.easeOutBack);
 		}
 	}
 

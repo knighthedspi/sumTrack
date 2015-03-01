@@ -181,14 +181,27 @@ public class GamePlayService  {
 			"oncompletetarget",completeTarget));
 	}
 
+	public static void ScaleTo(GameObject go, Vector3 originScale, Vector3 scale, float time, LeanTweenType easeType, Action callback )
+	{
+		go.transform.localScale = originScale;
+		LeanTween.scale (go, scale, time).setEase (easeType).setOnComplete (callback);
+	}
+
 	/// <summary>
 	/// Scales to animation using iTween
 	/// </summary>
 
-	public static void ScaleTo(GameObject go,Vector3 originScale, Vector3 scale, float time,string easeType)
+//	public static void ScaleTo(GameObject go,Vector3 originScale, Vector3 scale, float time,string easeType)
+//	{
+//		go.transform.localScale = originScale;
+//		iTween.ScaleTo (go,iTween.Hash("scale",scale,"isLocal",true,"time",time,"easetype",easeType));
+//	}
+
+	public static void ScaleTo(GameObject go,Vector3 originScale, Vector3 scale, float time,LeanTweenType easeType)
 	{
 		go.transform.localScale = originScale;
-		iTween.ScaleTo (go,iTween.Hash("scale",scale,"isLocal",true,"time",time,"easetype",easeType));
+//		iTween.ScaleTo (go,iTween.Hash("scale",scale,"isLocal",true,"time",time,"easetype",easeType));
+		LeanTween.scale (go, scale, time).setEase (easeType);
 	}
 
 	// save state
@@ -298,12 +311,10 @@ public class GamePlayService  {
 		if(currentHistory.Equals(""))
 			return null;
 		else{
-			Debug.Log(currentHistory);
 			string [] blockInfoStrs = currentHistory.Split("\n"[0]);
 			List<History> historyInfos = new List<History> ();
 			foreach(string blockInfoStr in blockInfoStrs)
 			{
-				Debug.Log(blockInfoStr);
 				if(blockInfoStr.Trim().Equals(""))
 					break;
 				string [] dataStr = blockInfoStr.Split("|"[0]);

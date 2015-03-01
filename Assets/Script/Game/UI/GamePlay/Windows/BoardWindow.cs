@@ -76,7 +76,6 @@ public class BoardWindow : WindowItemBase {
 		}
 
 		// tutorial
-		Debug.Log ("aaaaaaaaaaaaa    " + AppManager.Instance.playingMaxLevel.ToString ());
 		if(AppManager.Instance.playingMaxLevel == 1)
 		{
 			StartCoroutine(StartTutorial());

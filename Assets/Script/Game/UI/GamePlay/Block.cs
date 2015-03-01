@@ -185,7 +185,7 @@ public class Block : MonoBehaviour {
 	{
 		Vector3 scaleTo = (blockInfo.type == BlockType.originDone) ? new Vector3 (1.1f, 1.1f, 1.1f) : Vector3.one;
 
-		GamePlayService.ScaleTo (gameObject,transform.localScale, scaleTo,0.15f,"easeOutBack");
+		GamePlayService.ScaleTo (gameObject,transform.localScale, scaleTo,0.15f,LeanTweenType.easeOutBack);
 	}
 
 

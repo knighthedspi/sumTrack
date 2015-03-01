@@ -216,7 +216,6 @@ public class OptionWindow : WindowItemBase {
 		if(Input.GetMouseButton(0))
 		{
 			Vector2 touch = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
-			Debug.Log(touch);
 			_touchList.Add(touch);
 			if(_touchList.Count >= 3)
 			{
