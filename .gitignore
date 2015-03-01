@@ -18,3 +18,5 @@ plus.apk
 .DS_Store
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
+ios/*
+ios2/*

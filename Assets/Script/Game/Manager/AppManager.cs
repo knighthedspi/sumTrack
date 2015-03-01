@@ -12,8 +12,8 @@ public class AppManager : Singleton<AppManager>
 
 	void Start()
 	{
-//		PlayerPrefs.SetInt (Config.CURRENT_MAX_LEVEL, -1);
-
+//		PlayerPrefs.DeleteAll();
+//		PlayerPrefs.SetInt (Config.CURRENT_MAX_LEVEL, 0);
 		gamePlayInfo 			= new GamePlayInfo ();
 
 		// block

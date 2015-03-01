@@ -80,7 +80,7 @@ public class OptionWindow : WindowItemBase {
 	public void OnReviewBtnCLick()
 	{
 #if UNITY_ANDROID
-		Application.OpenURL("market://details?id=vn.ktech.sumtrack/");
+		Application.OpenURL("market://details?id=vn.ktech.plus/");
 #elif UNITY_IPHONE
 		Application.OpenURL("itms-apps://itunes.apple.com/app/id966189502");
 #endif
