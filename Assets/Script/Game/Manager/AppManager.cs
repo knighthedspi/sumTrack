@@ -13,7 +13,7 @@ public class AppManager : Singleton<AppManager>
 	void Start()
 	{
 //		PlayerPrefs.DeleteAll();
-//		PlayerPrefs.SetInt (Config.CURRENT_MAX_LEVEL, 0);
+		PlayerPrefs.SetInt (Config.CURRENT_MAX_LEVEL, 5);
 		gamePlayInfo 			= new GamePlayInfo ();
 
 		// block
